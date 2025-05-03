@@ -56,6 +56,7 @@
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 10px;
+      cursor: pointer;
     }
 
     .product-card h4 {
@@ -120,6 +121,13 @@
       text-align: center;
     }
 
+    .modal-content img {
+      max-width: 100%;
+      max-height: 300px;
+      margin: 10px 0;
+      cursor: zoom-in;
+    }
+
     .close {
       color: #aaa;
       float: right;
@@ -166,6 +174,7 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Contact Us</h2>
       <p id="modal-product-name"></p>
+      <img id="modal-product-image" src="" alt="" onclick="toggleZoom(this)">
       <p><a href="tel:+254717616895" style="color:#4CAF50;">Call Now: 0717616895</a></p>
     </div>
   </div>
@@ -186,8 +195,6 @@
       { name: "Entering Elegance", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
       { name: "Heels", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
       { name: "Heel", price: 1600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" }
-      
-      
     ];
 
     const gallery = document.getElementById('adidas-gallery');
@@ -196,7 +203,7 @@
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
-        <img src="${shoe.image}" alt="${shoe.name}">
+        <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal('${shoe.name}')">
         <h4>${shoe.name}</h4>
         <p>KES ${shoe.price}</p>
         <button class="contact-btn" onclick="openModal('${shoe.name}')">Contact</button>
@@ -205,12 +212,28 @@
     });
 
     function openModal(productName) {
-      document.getElementById("modal-product-name").textContent = `Inquire about ${productName}`;
+      const product = adidasShoes.find(item => item.name === productName);
+      document.getElementById("modal-product-name").textContent = `Inquire about ${product.name}`;
+      const modalImage = document.getElementById("modal-product-image");
+      modalImage.src = product.image;
+      modalImage.style.transform = "scale(1)";
+      modalImage.style.cursor = "zoom-in";
       document.getElementById("productModal").style.display = "block";
     }
 
     function closeModal() {
       document.getElementById("productModal").style.display = "none";
+    }
+
+    function toggleZoom(img) {
+      if (img.style.transform === "scale(2)") {
+        img.style.transform = "scale(1)";
+        img.style.cursor = "zoom-in";
+      } else {
+        img.style.transform = "scale(2)";
+        img.style.cursor = "zoom-out";
+      }
+      img.style.transition = "transform 0.3s ease";
     }
 
     window.onclick = function(event) {
