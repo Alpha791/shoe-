@@ -180,10 +180,10 @@
 
   <script>
     const adidasShoes = [
-      { name: "Ultraboost", price: 1800, image: "https://github.com/Alpha791/shoe-/blob/6448662d81003bc1652a5dfb9e719a4849ff2e3f/images/tkjbiike.png" },
-      { name: "Superstar", price: 1250, image: "https://github.com/Alpha791/shoe-/blob/6448662d81003bc1652a5dfb9e719a4849ff2e3f/images/z8e0k6ya.png" },
-      { name: "NMD R1", price: 1650, image: "https://github.com/Alpha791/shoe-/blob/6448662d81003bc1652a5dfb9e719a4849ff2e3f/images/svne0h29.png" },
-      { name: "Yeezy Boost 350", price: 2500, image: "https://github.com/Alpha791/shoe-/blob/6448662d81003bc1652a5dfb9e719a4849ff2e3f/images/idyek3hj.png" },
+      { name: "Ultraboost", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
+      { name: "Superstar", price: 1250, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
+      { name: "NMD R1", price: 1650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
+      { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
       { name: "Gazelle", price: 1050, image: "https://images.unsplash.com/photo-1575734558130-4268753f703f" },
       { name: "Forum Low", price: 1100, image: "https://images.unsplash.com/photo-1575734558130-4268753f703f" },
       { name: "Samba OG", price: 1200, image: "https://images.unsplash.com/photo-1575734558130-4268753f703f" },
@@ -199,44 +199,6 @@
       { name: "Speedfactory AM4", price: 3000, image: "https://images.unsplash.com/photo-1599081727099-7dfbbd62be79" },
       { name: "Ultra4D", price: 3400, image: "https://images.unsplash.com/photo-1585357283702-99009858f0b2" },
       { name: "Equinox", price: 2500, image: "https://images.unsplash.com/photo-1600531441792-b68a7393b918" },
-      { name: "4D FWD", price: 3500, image: "https://images.unsplash.com/photo-1584792638451-bbbcd5e9d00a" },
-      { name: "Adidas Originals Gazelle", price: 2400, image: "https://images.unsplash.com/photo-1575734548899-9ed226a5e540" },
-      { name: "Adidas Originals ZX Flux", price: 2000, image: "https://images.unsplash.com/photo-1575734558437-2341c98fc3b4" }
-    ];
+      { name: "4D FWD", price
 
-    const gallery = document.getElementById('adidas-gallery');
-    const formatCurrency = (value) => {
-      return new Intl.NumberFormat('en-KE', {
-        style: 'currency',
-        currency: 'KES',
-      }).format(value);
-    };
-
-    adidasShoes.forEach(shoe => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${shoe.image}" alt="Image of ${shoe.name} shoe">
-        <h4>${shoe.name}</h4>
-        <p>${formatCurrency(shoe.price)}</p>
-        <button class="contact-btn" onclick="openModal('${shoe.name}', '${shoe.image}', ${shoe.price})">Contact</button>
-      `;
-      gallery.appendChild(card);
-    });
-
-    function openModal(name, image, price) {
-      const modal = document.getElementById("productModal");
-      const modalProductName = document.getElementById("modal-product-name");
-      modalProductName.textContent = name + ' - ' + formatCurrency(price);
-      modal.style.display = "block";
-    }
-
-    // Close modal functionality
-    const closeModal = document.querySelector('.close');
-    closeModal.onclick = function() {
-      document.getElementById("productModal").style.display = "none";
-    }
-  </script>
-
-</body>
-</html>
+    
