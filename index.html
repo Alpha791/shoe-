@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      padding-bottom: 60px; /* Add padding to prevent footer overlap */
     }
     #adidas-gallery {
       display: grid;
@@ -67,27 +68,36 @@
 
   <script>
     const adidasShoes = [
-      { name: "Ultraboost", price: 1800, image: "images/adidas1.jpg" },
-      { name: "Superstar", price: 1250, image: "images/adidas2.jpg" },
-      { name: "NMD R1", price: 1650, image: "images/adidas3.jpg" },
-      { name: "Yeezy Boost 350", price: 2500, image: "images/adidas4.jpg" },
-      { name: "Gazelle", price: 1050, image: "images/adidas5.jpg" },
-      { name: "Forum Low", price: 1100, image: "images/adidas6.jpg" },
-      { name: "Samba OG", price: 1200, image: "images/adidas7.jpg" },
-      { name: "ZX 2K", price: 1450, image: "images/adidas8.jpg" },
-      { name: "Terrex Free Hiker", price: 2000, image: "images/adidas9.jpg" },
-      { name: "Predator Cleats", price: 1700, image: "images/adidas10.jpg" },
-      { name: "Adilette Slides", price: 4500, image: "images/adidas11.jpg" },
+      { name: "Ultraboost", price: 1800, image: "https://via.placeholder.com/200x200.png?text=Ultraboost" },
+      { name: "Superstar", price: 1250, image: "https://via.placeholder.com/200x200.png?text=Superstar" },
+      { name: "NMD R1", price: 1650, image: "https://via.placeholder.com/200x200.png?text=NMD+R1" },
+      { name: "Yeezy Boost 350", price: 2500, image: "https://via.placeholder.com/200x200.png?text=Yeezy+Boost+350" },
+      { name: "Gazelle", price: 1050, image: "https://via.placeholder.com/200x200.png?text=Gazelle" },
+      { name: "Forum Low", price: 1100, image: "https://via.placeholder.com/200x200.png?text=Forum+Low" },
+      { name: "Samba OG", price: 1200, image: "https://via.placeholder.com/200x200.png?text=Samba+OG" },
+      { name: "ZX 2K", price: 1450, image: "https://via.placeholder.com/200x200.png?text=ZX+2K" },
+      { name: "Terrex Free Hiker", price: 2000, image: "https://via.placeholder.com/200x200.png?text=Terrex+Free+Hiker" },
+      { name: "Predator Cleats", price: 1700, image: "https://via.placeholder.com/200x200.png?text=Predator+Cleats" },
+      { name: "Adilette Slides", price: 4500, image: "https://via.placeholder.com/200x200.png?text=Adilette+Slides" },
     ];
 
     const gallery = document.getElementById('adidas-gallery');
+    
+    // Use Intl.NumberFormat for proper currency formatting
+    const formatCurrency = (value) => {
+      return new Intl.NumberFormat('en-KE', {
+        style: 'currency',
+        currency: 'KES',
+      }).format(value);
+    };
+    
     adidasShoes.forEach(shoe => {
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
         <img src="${shoe.image}" alt="${shoe.name}">
         <h4>${shoe.name}</h4>
-        <p>KES ${shoe.price.toLocaleString()}</p>
+        <p>${formatCurrency(shoe.price)}</p>
       `;
       gallery.appendChild(card);
     });
