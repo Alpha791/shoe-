@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adidas Shoe Gallery</title>
+  <title>Frigates Stores - Adidas Shoe Gallery</title>
   <style>
     body {
       background-color: black;
@@ -13,12 +13,34 @@
       padding: 0;
       padding-bottom: 60px;
     }
+
+    /* Header Style */
+    header {
+      background-color: #4CAF50;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+    }
+
+    header p {
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: lighter;
+    }
+
+    main {
+      padding: 20px;
+    }
+
     #adidas-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
       padding: 20px;
     }
+
     .product-card {
       background-color: #222;
       border-radius: 8px;
@@ -29,21 +51,25 @@
       flex-direction: column;
       align-items: center;
     }
+
     .product-card img {
       width: 100%;
       height: auto;
       border-radius: 8px;
       margin-bottom: 10px;
     }
+
     .product-card h4 {
       margin: 10px 0;
       font-size: 18px;
       color: #fff;
     }
+
     .product-card p {
       font-size: 16px;
       color: #ccc;
     }
+
     .contact-btn {
       background-color: #4CAF50;
       color: white;
@@ -53,9 +79,11 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     .contact-btn:hover {
       background-color: #45a049;
     }
+
     footer {
       background-color: #111;
       text-align: center;
@@ -64,10 +92,13 @@
       width: 100%;
       bottom: 0;
     }
+
     footer p {
       color: #fff;
       font-size: 14px;
     }
+
+    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -79,59 +110,90 @@
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.4);
     }
+
     .modal-content {
       background-color: #222;
       color: white;
       margin: 15% auto;
       padding: 20px;
       border-radius: 8px;
-      width: 50%;
+      width: 80%;
+      max-width: 600px;
     }
+
     .close {
       color: #aaa;
       float: right;
       font-size: 28px;
       font-weight: bold;
     }
+
     .close:hover,
     .close:focus {
       color: white;
       text-decoration: none;
       cursor: pointer;
     }
+
     .modal form {
       display: flex;
       flex-direction: column;
     }
-    .modal input, .modal textarea {
+
+    .modal input,
+    .modal textarea {
       margin: 10px 0;
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #ddd;
     }
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+      header {
+        font-size: 36px;
+      }
+
+      .product-card {
+        padding: 15px;
+      }
+
+      .contact-btn {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div id="adidas-gallery"></div>
+  <!-- Header with "Frigates Stores" -->
+  <header>
+    Frigates Stores
+    <p>Your One-Stop Adidas Shoe Gallery</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div id="adidas-gallery"></div>
+  </main>
 
   <!-- Modal -->
   <div id="productModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close" aria-label="Close modal">&times;</span>
       <h2>Contact Us for Product Inquiry</h2>
       <p id="modal-product-name"></p>
       <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="tel" id="phone" placeholder="Your Phone Number" required>
-        <textarea id="message" placeholder="Your Message" required></textarea>
+        <input type="text" id="name" placeholder="Your Name" required aria-label="Your Name">
+        <input type="tel" id="phone" placeholder="Your Phone Number" required aria-label="Your Phone Number">
+        <textarea id="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
         <button type="submit">Send Message</button>
       </form>
     </div>
   </div>
 
   <footer>
-    <p>Contact Us: <a href="tel:07171616895" style="color: #4CAF50;">07171616895</a></p>
+    <p>Contact Us: <a href="tel:0717616895" style="color: #4CAF50;">0717616895</a></p>
   </footer>
 
   <script>
@@ -150,7 +212,6 @@
     ];
 
     const gallery = document.getElementById('adidas-gallery');
-
     const formatCurrency = (value) => {
       return new Intl.NumberFormat('en-KE', {
         style: 'currency',
@@ -162,44 +223,7 @@
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
-        <img src="${shoe.image}" alt="${shoe.name}">
+        <img src="${shoe.image}" alt="Image of ${shoe.name} shoe">
         <h4>${shoe.name}</h4>
         <p>${formatCurrency(shoe.price)}</p>
-        <button class="contact-btn" onclick="openModal('${shoe.name}')">Contact Us</button>
-      `;
-      gallery.appendChild(card);
-    });
-
-    const modal = document.getElementById("productModal");
-    const closeModal = document.querySelector(".close");
-
-    closeModal.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    }
-
-    function openModal(productName) {
-      const modalProductName = document.getElementById("modal-product-name");
-      modalProductName.textContent = `Inquire about ${productName}`;
-      modal.style.display = "block";
-    }
-
-    const contactForm = document.getElementById("contact-form");
-    contactForm.onsubmit = function(event) {
-      event.preventDefault();
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const message = document.getElementById("message").value;
-
-      alert(`Thank you ${name} for your inquiry about our product! We will contact you shortly at ${phone}.`);
-      modal.style.display = "none";
-    };
-  </script>
-
-</body>
-</html>
+        <button class="contact-btn" onclick="open
