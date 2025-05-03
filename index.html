@@ -98,7 +98,6 @@
       text-decoration: none;
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -108,32 +107,35 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.8);
     }
 
     .modal-content {
       background-color: #222;
-      margin: 10% auto;
+      margin: 5% auto;
       padding: 20px;
       border-radius: 8px;
       width: 90%;
-      max-width: 400px;
+      max-width: 500px;
       text-align: center;
-      position: relative;
     }
 
     .modal-content img {
-      max-width: 100%;
-      max-height: 300px;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
       cursor: zoom-in;
-      transition: transform 0.3s ease;
+      border-radius: 8px;
     }
 
-    .modal-content img.zoomed {
-      transform: scale(2);
+    .modal-content.zoomed img {
+      transform: scale(1.5);
       cursor: zoom-out;
+    }
+
+    .modal-content h2,
+    .modal-content p {
+      margin: 10px 0;
     }
 
     .close {
@@ -141,16 +143,12 @@
       float: right;
       font-size: 28px;
       font-weight: bold;
-      position: absolute;
-      right: 20px;
-      top: 10px;
+      cursor: pointer;
     }
 
     .close:hover,
     .close:focus {
       color: white;
-      text-decoration: none;
-      cursor: pointer;
     }
 
     @media (max-width: 480px) {
@@ -163,92 +161,88 @@
       }
 
       .modal-content {
-        margin-top: 40%;
+        margin-top: 20%;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    Frigates Stores
-    <p>Your One-Stop Shoe Gallery</p>
-  </header>
+<header>
+  Frigates Stores
+  <p>Your One-Stop Shoe Gallery</p>
+</header>
 
-  <main>
-    <div id="adidas-gallery"></div>
-  </main>
+<main>
+  <div id="adidas-gallery"></div>
+</main>
 
-  <!-- Modal -->
-  <div id="productModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modal-product-image" src="" alt="">
-      <h2 id="modal-product-name"></h2>
-      <p id="modal-product-price"></p>
-      <p><a href="tel:+254717616895" style="color:#4CAF50;">Call Now: 0717616895</a></p>
-    </div>
+<!-- Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content" id="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modal-image" src="" alt="Product Image" onclick="toggleZoom()" />
+    <h2 id="modal-product-name"></h2>
+    <p id="modal-product-price"></p>
+    <p><a href="tel:+254717616895" style="color:#4CAF50;">Call Now: 0717616895</a></p>
   </div>
+</div>
 
-  <footer>
-    <p>Contact Us: <a href="tel:+254717616895">0717616895</a></p>
-  </footer>
+<footer>
+  <p>Contact Us: <a href="tel:+254717616895">0717616895</a></p>
+</footer>
 
-  <script>
-    const adidasShoes = [
-      { name: "Ultraboost", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
-      { name: "Superstar", price: 1250, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
-      { name: "NMD R1", price: 1650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
-      { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
-      { name: "Glanzzy", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
-      { name: "Sneaker Desktop", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
-      { name: "Transparent", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/a00seeto.png" },
-      { name: "Entering Elegance", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
-      { name: "Heels", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
-      { name: "Heel", price: 1600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" }
-    ];
+<script>
+  const adidasShoes = [
+    { name: "Ultraboost", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
+    { name: "Superstar", price: 1250, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
+    { name: "NMD R1", price: 1650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
+    { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
+    { name: "Glanzzy", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
+    { name: "Sneaker Desktop", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
+    { name: "Transparent", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/a00seeto.png" },
+    { name: "Entering Elegance", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
+    { name: "Heels", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
+    { name: "Heel", price: 1600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" }
+  ];
 
-    const gallery = document.getElementById('adidas-gallery');
-    const modal = document.getElementById('productModal');
-    const modalImg = document.getElementById('modal-product-image');
-    const modalName = document.getElementById('modal-product-name');
-    const modalPrice = document.getElementById('modal-product-price');
+  const gallery = document.getElementById('adidas-gallery');
 
-    adidasShoes.forEach(shoe => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal('${shoe.name}', '${shoe.price}', '${shoe.image}')">
-        <h4>${shoe.name}</h4>
-        <p>KES ${shoe.price}</p>
-        <button class="contact-btn" onclick="openModal('${shoe.name}', '${shoe.price}', '${shoe.image}')">Contact</button>
-      `;
-      gallery.appendChild(card);
-    });
+  adidasShoes.forEach(shoe => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal('${shoe.name}', '${shoe.price}', '${shoe.image}')">
+      <h4>${shoe.name}</h4>
+      <p>KES ${shoe.price}</p>
+      <button class="contact-btn" onclick="openModal('${shoe.name}', '${shoe.price}', '${shoe.image}')">Contact</button>
+    `;
+    gallery.appendChild(card);
+  });
 
-    function openModal(name, price, imageUrl) {
-      modal.style.display = "block";
-      modalImg.src = imageUrl;
-      modalImg.alt = name;
-      modalName.textContent = name;
-      modalPrice.textContent = `KES ${price}`;
-      modalImg.classList.remove('zoomed');
+  function openModal(name, price, image) {
+    document.getElementById("modal-product-name").textContent = name;
+    document.getElementById("modal-product-price").textContent = `KES ${price}`;
+    document.getElementById("modal-image").src = image;
+    document.getElementById("productModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+    document.getElementById("modal-content").classList.remove("zoomed");
+  }
+
+  function toggleZoom() {
+    document.getElementById("modal-content").classList.toggle("zoomed");
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById("productModal");
+    if (event.target === modal) {
+      closeModal();
     }
-
-    function closeModal() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target === modal) {
-        closeModal();
-      }
-    };
-
-    document.getElementById("modal-product-image").onclick = function () {
-      this.classList.toggle("zoomed");
-    };
-  </script>
+  };
+</script>
 
 </body>
 </html>
