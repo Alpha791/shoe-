@@ -4,29 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Frigates Stores - Shoe Gallery</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- SEO -->
+  <meta name="description" content="Frigates Stores offers a stunning collection of Adidas shoes at affordable prices. Browse now!">
+  <meta name="keywords" content="Adidas, shoes, sneaker gallery, Kenya, Frigates Stores, best shoe deals">
+  <meta name="author" content="Frigates Stores">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://raw.githubusercontent.com/Alpha791/shoe-/main/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Alpha791/shoe-/main/images/favicon.png">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
       padding-bottom: 80px;
     }
 
     header {
-      background-color: #4CAF50;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #4CAF50;
       text-align: center;
-      padding: 30px 10px;
+      padding: 25px 10px;
       font-size: 36px;
       font-weight: bold;
-      color: white;
     }
 
     header p {
       font-size: 18px;
-      margin-top: 8px;
-      font-weight: lighter;
+      margin-top: 5px;
+      font-weight: 300;
     }
 
     main {
@@ -40,14 +61,24 @@
     }
 
     .product-card {
-      background-color: #222;
+      background: #222;
       border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
       padding: 15px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .product-card:nth-child(even) { animation-delay: 0.2s; }
+    .product-card:nth-child(odd)  { animation-delay: 0.4s; }
+
+    .product-card:hover {
+      transform: scale(1.05);
     }
 
     .product-card img {
@@ -71,21 +102,39 @@
     }
 
     .contact-btn {
-      background-color: #4CAF50;
-      color: white;
+      background: #4CAF50;
+      color: #fff;
       border: none;
       padding: 8px 16px;
       font-size: 14px;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     .contact-btn:hover {
-      background-color: #45a049;
+      background: #45a049;
+    }
+
+    .loader-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .loader {
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #4CAF50;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
     }
 
     footer {
-      background-color: #111;
+      background: #111;
       text-align: center;
       padding: 15px;
       position: fixed;
@@ -96,6 +145,7 @@
     footer a {
       color: #4CAF50;
       text-decoration: none;
+      margin: 0 5px;
     }
 
     .modal {
@@ -106,12 +156,15 @@
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
       background-color: rgba(0, 0, 0, 0.7);
     }
 
     .modal-content {
-      background-color: #222;
+      background: rgba(34, 34, 34, 0.6);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
       margin: 5% auto;
       padding: 20px;
       border-radius: 8px;
@@ -140,14 +193,10 @@
       top: 10px;
       font-size: 28px;
       font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: white;
-      text-decoration: none;
       cursor: pointer;
     }
+
+    .close:hover { color: white; }
 
     .arrow {
       position: absolute;
@@ -159,26 +208,25 @@
       user-select: none;
     }
 
-    .arrow.left {
-      left: 10px;
+    .arrow.left  { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .arrow.right {
-      right: 10px;
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     @media (max-width: 480px) {
-      header {
-        font-size: 28px;
-      }
-
-      header p {
-        font-size: 16px;
-      }
-
-      .modal-content {
-        margin-top: 40%;
-      }
+      header { font-size: 28px; }
+      header p { font-size: 16px; }
+      .modal-content { margin-top: 40%; }
     }
   </style>
 </head>
@@ -194,7 +242,7 @@
   </main>
 
   <!-- Modal -->
-  <div id="productModal" class="modal">
+  <div id="productModal" class="modal" onclick="event.target === this && closeModal()">
     <div class="modal-content" id="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <span class="arrow left" onclick="prevProduct()">&#10094;</span>
@@ -208,6 +256,10 @@
 
   <footer>
     <p>Contact Us: <a href="tel:+254717616895">0717616895</a></p>
+    <p>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </p>
   </footer>
 
   <script>
@@ -225,14 +277,16 @@
     ];
 
     let currentIndex = 0;
-
     const gallery = document.getElementById('adidas-gallery');
 
     adidasShoes.forEach((shoe, index) => {
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
-        <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})">
+        <div class="loader-wrapper">
+          <div class="loader"></div>
+          <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})" onload="this.previousElementSibling.style.display='none'">
+        </div>
         <h4>${shoe.name}</h4>
         <p>KES ${shoe.price}</p>
         <button class="contact-btn" onclick="openModal(${index})">Contact</button>
@@ -242,7 +296,7 @@
 
     function openModal(index) {
       currentIndex = index;
-      const product = adidasShoes[currentIndex];
+      const product = adidasShoes[index];
       document.getElementById("modal-product-name").textContent = product.name;
       document.getElementById("modal-product-price").textContent = `KES ${product.price}`;
       document.getElementById("modal-image").src = product.image;
@@ -267,12 +321,6 @@
       currentIndex = (currentIndex - 1 + adidasShoes.length) % adidasShoes.length;
       openModal(currentIndex);
     }
-
-    window.onclick = function(event) {
-      if (event.target === document.getElementById("productModal")) {
-        closeModal();
-      }
-    };
   </script>
 
 </body>
