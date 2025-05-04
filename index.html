@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Frigates Stores - Shoe Gallery</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
@@ -40,12 +40,6 @@
       font-size: 2rem;
     }
 
-    header p {
-      margin-top: 0.3rem;
-      font-size: 1rem;
-      font-weight: 300;
-    }
-
     .search-bar {
       text-align: center;
       margin: 1rem;
@@ -78,7 +72,6 @@
       padding: 1rem;
       text-align: center;
       transition: transform 0.3s ease;
-      position: relative;
       overflow: hidden;
     }
 
@@ -97,14 +90,6 @@
       cursor: pointer;
     }
 
-    .product-card h4 {
-      margin: 0.5rem 0;
-    }
-
-    .product-card p {
-      display: none;
-    }
-
     .contact-btn {
       background-color: var(--primary);
       color: white;
@@ -114,7 +99,6 @@
       border-radius: 25px;
       cursor: pointer;
       margin-top: 0.5rem;
-      transition: background 0.3s ease;
     }
 
     .contact-btn:hover {
@@ -156,8 +140,6 @@
       color: white;
       max-width: 400px;
       text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      position: relative;
     }
 
     .modal-content img {
@@ -173,6 +155,15 @@
       top: 10px; right: 20px;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -190,6 +181,17 @@
 
   <main>
     <div id="adidas-gallery"></div>
+
+    <section style="margin-top: 3rem; text-align: center;">
+      <h3>Can’t find your shoe?</h3>
+      <p>Let us know, and we’ll help you get it!</p>
+      <form id="requestForm" onsubmit="return sendRequest()" style="max-width: 400px; margin: auto;">
+        <input type="text" id="clientName" placeholder="Your Name" required>
+        <input type="tel" id="clientPhone" placeholder="Phone Number" required>
+        <input type="text" id="shoeRequest" placeholder="Describe the shoe you're looking for" required>
+        <button type="submit" class="contact-btn">Message Us</button>
+      </form>
+    </section>
   </main>
 
   <div class="modal" id="productModal">
@@ -258,6 +260,15 @@
       const query = document.getElementById('searchInput').value.toLowerCase();
       const filtered = shoes.filter(shoe => shoe.name.toLowerCase().includes(query));
       displayShoes(filtered);
+    }
+
+    function sendRequest() {
+      const name = document.getElementById('clientName').value;
+      const phone = document.getElementById('clientPhone').value;
+      const request = document.getElementById('shoeRequest').value;
+      const message = encodeURIComponent(`Hello, my name is ${name}. I couldn't find the shoe I want. Here's my number: ${phone}. I'm looking for: ${request}`);
+      window.open(`https://wa.me/254717616895?text=${message}`, '_blank');
+      return false;
     }
 
     displayShoes();
