@@ -7,267 +7,209 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Frigates Stores offers a stunning collection of Adidas shoes at affordable prices. Browse now!">
-  <meta name="keywords" content="Adidas, shoes, sneaker gallery, Kenya, Frigates Stores, best shoe deals">
-  <meta name="author" content="Frigates Stores">
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://raw.githubusercontent.com/Alpha791/shoe-/main/images/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Alpha791/shoe-/main/images/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
   <style>
+    :root {
+      --primary: #4CAF50;
+      --bg-dark: #0e0e0e;
+      --card-bg: #1c1c1c;
+      --text-light: #e0e0e0;
+      --accent: #fff;
+    }
+
     body {
-      background-color: black;
-      color: white;
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
-      padding-bottom: 80px;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      padding: 1.5rem;
       text-align: center;
-      padding: 25px 10px;
-      font-size: 36px;
-      font-weight: bold;
-      color: #fff;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
     }
 
     header p {
-      font-size: 18px;
-      margin-top: 8px;
-      font-weight: lighter;
+      margin-top: 0.3rem;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    .search-bar input {
+      padding: 10px 20px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      font-size: 16px;
     }
 
     main {
-      padding: 10px;
+      flex: 1;
+      padding: 1rem;
     }
 
     #adidas-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
     }
 
     .product-card {
-      background-color: #222;
-      border-radius: 8px;
-      overflow: hidden;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1rem;
       text-align: center;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease forwards;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-
-    .product-card:nth-child(even) { animation-delay: 0.2s; }
-    .product-card:nth-child(odd) { animation-delay: 0.4s; }
 
     .product-card:hover {
-      transform: scale(1.05);
-      transition: transform 0.3s ease;
-    }
-
-    .loader-wrapper {
-      position: relative;
-      width: 100%;
-    }
-
-    .loader {
-      position: absolute;
-      top: 45%;
-      left: 45%;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #4CAF50;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     }
 
     .product-card img {
       width: 100%;
-      max-height: 180px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 10px;
+      transition: 0.3s ease;
       cursor: pointer;
     }
 
     .product-card h4 {
-      margin: 8px 0;
-      font-size: 16px;
+      margin: 0.5rem 0;
     }
 
     .product-card p {
+      color: #aaa;
       font-size: 14px;
-      color: #ccc;
-      margin: 5px 0;
     }
 
     .contact-btn {
-      background-color: #4CAF50;
+      background-color: var(--primary);
       color: white;
       border: none;
-      padding: 8px 16px;
-      font-size: 14px;
-      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 25px;
       cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.3s ease;
     }
 
     .contact-btn:hover {
-      background-color: #45a049;
+      background-color: #3e8e41;
     }
 
     footer {
       background-color: #111;
       text-align: center;
-      padding: 15px;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
+      padding: 1rem;
+      font-size: 0.9rem;
     }
 
     footer a {
-      color: #4CAF50;
+      color: var(--primary);
       text-decoration: none;
-      margin: 0 5px;
     }
 
     .modal {
       display: none;
       position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
       z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal.active {
+      display: flex;
     }
 
     .modal-content {
-      background: rgba(34, 34, 34, 0.6);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      margin: 5% auto;
-      padding: 20px;
-      border-radius: 8px;
-      width: 90%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+      color: white;
       max-width: 400px;
       text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
       position: relative;
     }
 
     .modal-content img {
       width: 100%;
       border-radius: 10px;
+      margin-bottom: 1rem;
       max-height: 300px;
       object-fit: contain;
     }
 
-    .modal-content.zoomed img {
-      transform: scale(1.5);
-      transition: transform 0.3s ease;
-    }
-
-    .close {
-      color: #aaa;
+    .modal .close {
       position: absolute;
-      right: 20px;
-      top: 10px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: white;
-      text-decoration: none;
+      top: 10px; right: 20px;
+      font-size: 1.5rem;
       cursor: pointer;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .arrow.left { left: 10px; }
-    .arrow.right { right: 10px; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @media (max-width: 480px) {
-      header { font-size: 28px; }
-      header p { font-size: 16px; }
-      .modal-content { margin-top: 40%; }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    Frigates Stores
+    <h1>Frigates Stores</h1>
     <p>Your One-Stop Shoe Gallery</p>
   </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for shoes..." oninput="filterGallery()">
+  </div>
 
   <main>
     <div id="adidas-gallery"></div>
   </main>
 
-  <!-- Modal -->
-  <div id="productModal" class="modal">
-    <div class="modal-content" id="modal-content">
+  <div class="modal" id="productModal">
+    <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <span class="arrow left" onclick="prevProduct()">&#10094;</span>
-      <span class="arrow right" onclick="nextProduct()">&#10095;</span>
-      <img id="modal-image" onclick="toggleZoom()" />
+      <img id="modal-image" />
       <h2 id="modal-product-name"></h2>
       <p id="modal-product-price"></p>
-      <p><a href="tel:+254717616895" style="color:#4CAF50;">Call Now: 0717616895</a></p>
+      <a class="contact-btn" href="tel:+254717616895">Call Now: 0717616895</a>
     </div>
   </div>
 
   <footer>
-    <p>Contact Us: <a href="tel:+254717616895">0717616895</a></p>
-    <p>
-      <a href="https://wa.me/254717616895" target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-      </a>
-    </p>
+    <p>Contact Us: <a href="tel:+254717616895">0717616895</a> |
+    <a href="https://wa.me/254717616895" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
   </footer>
 
   <script>
-    const adidasShoes = [
+    const shoes = [
       { name: "Ultraboost", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
       { name: "Superstar", price: 1250, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
       { name: "NMD R1", price: 1650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
@@ -284,58 +226,46 @@
       { name: "Toronto", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" }
     ];
 
-    let currentIndex = 0;
     const gallery = document.getElementById('adidas-gallery');
+    const modal = document.getElementById('productModal');
+    const modalImage = document.getElementById('modal-image');
+    const modalName = document.getElementById('modal-product-name');
+    const modalPrice = document.getElementById('modal-product-price');
 
-    adidasShoes.forEach((shoe, index) => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <div class="loader-wrapper">
-          <div class="loader"></div>
-          <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})" onload="this.previousElementSibling.style.display='none'">
-        </div>
-        <h4>${shoe.name}</h4>
-        <p>KES ${shoe.price}</p>
-        <button class="contact-btn" onclick="openModal(${index})">Contact</button>
-      `;
-      gallery.appendChild(card);
-    });
+    function displayShoes(filteredShoes = shoes) {
+      gallery.innerHTML = '';
+      filteredShoes.forEach((shoe, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})" />
+          <h4>${shoe.name}</h4>
+          <p>KES ${shoe.price}</p>
+          <button class="contact-btn" onclick="openModal(${index})">Contact</button>
+        `;
+        gallery.appendChild(card);
+      });
+    }
 
     function openModal(index) {
-      currentIndex = index;
-      const product = adidasShoes[currentIndex];
-      document.getElementById("modal-product-name").textContent = product.name;
-      document.getElementById("modal-product-price").textContent = `KES ${product.price}`;
-      document.getElementById("modal-image").src = product.image;
-      document.getElementById("productModal").style.display = "block";
+      const shoe = shoes[index];
+      modalImage.src = shoe.image;
+      modalName.textContent = shoe.name;
+      modalPrice.textContent = `KES ${shoe.price}`;
+      modal.classList.add('active');
     }
 
     function closeModal() {
-      document.getElementById("productModal").style.display = "none";
-      document.getElementById("modal-content").classList.remove("zoomed");
+      modal.classList.remove('active');
     }
 
-    function toggleZoom() {
-      document.getElementById("modal-content").classList.toggle("zoomed");
+    function filterGallery() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = shoes.filter(shoe => shoe.name.toLowerCase().includes(query));
+      displayShoes(filtered);
     }
 
-    function nextProduct() {
-      currentIndex = (currentIndex + 1) % adidasShoes.length;
-      openModal(currentIndex);
-    }
-
-    function prevProduct() {
-      currentIndex = (currentIndex - 1 + adidasShoes.length) % adidasShoes.length;
-      openModal(currentIndex);
-    }
-
-    window.onclick = function(event) {
-      if (event.target === document.getElementById("productModal")) {
-        closeModal();
-      }
-    };
+    displayShoes();
   </script>
-
 </body>
 </html>
