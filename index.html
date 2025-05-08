@@ -140,6 +140,7 @@
       color: white;
       max-width: 400px;
       text-align: center;
+      position: relative;
     }
 
     .modal-content img {
@@ -164,6 +165,12 @@
       border-radius: 10px;
       border: none;
       font-size: 16px;
+    }
+
+    #modal-product-price {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -199,7 +206,8 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <img id="modal-image" />
       <h2 id="modal-product-name"></h2>
-      <a class="contact-btn" href="tel:+254717616895">Call Now: 0717616895</a>
+      <p id="modal-product-price"></p>
+      <a id="modal-whatsapp-link" class="contact-btn" target="_blank">WhatsApp Us</a>
     </div>
   </div>
 
@@ -230,6 +238,8 @@
     const modal = document.getElementById('productModal');
     const modalImage = document.getElementById('modal-image');
     const modalName = document.getElementById('modal-product-name');
+    const modalPrice = document.getElementById('modal-product-price');
+    const whatsappLink = document.getElementById('modal-whatsapp-link');
 
     function displayShoes(filteredShoes = shoes) {
       gallery.innerHTML = '';
@@ -239,6 +249,7 @@
         card.innerHTML = `
           <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})" />
           <h4>${shoe.name}</h4>
+          <p>KES ${shoe.price}</p>
           <button class="contact-btn" onclick="openModal(${index})">Contact</button>
         `;
         gallery.appendChild(card);
@@ -249,6 +260,8 @@
       const shoe = shoes[index];
       modalImage.src = shoe.image;
       modalName.textContent = shoe.name;
+      modalPrice.textContent = `KES ${shoe.price}`;
+      whatsappLink.href = `https://wa.me/254717616895?text=Hello! I'm interested in the ${shoe.name} priced at KES ${shoe.price}.`;
       modal.classList.add('active');
     }
 
