@@ -48,6 +48,18 @@
       font-weight: bold;
     }
 
+    .info-banner {
+      background: #2c5364;
+      color: white;
+      padding: 10px 20px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 8px;
+      max-width: 90%;
+    }
+
     .search-bar {
       text-align: center;
       margin: 1rem;
@@ -194,12 +206,11 @@
     <h1>Frigates Stores</h1>
     <p>Your One-Stop Shoe Gallery</p>
   </header>
-  
-<div class="info-banner">
-  At Frigates Stores, we prioritize speed, convenience, and value.
-</div>
 
-  
+  <div class="info-banner">
+    At Frigates Stores, we prioritize speed, convenience, and value.
+  </div>
+
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for shoes..." oninput="filterGallery()">
   </div>
@@ -213,8 +224,7 @@
     <div>🚚 At Frigates Stores, we prioritize speed, convenience, and value. Place your order via WhatsApp for streamlined service and exclusive client benefits</div>
     <div>💸 Affordable Prices from KES 1500</div>
     <div>📲 Direct WhatsApp Orders</div>
-    <div>👟 Premium Sneakers, Heels, and the Finest Official Shoes for Men and Women
-</div>
+    <div>👟 Premium Sneakers, Heels, and the Finest Official Shoes for Men and Women</div>
     <div>🛡️ Trusted by 1000+ Customers</div>
   </div>
 
@@ -263,10 +273,9 @@
       { name: "Paris Heels", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/paris.jpeg" },
       { name: "Valentino", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/valentino.jpeg" },
       { name: "Ballerina flats", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/barelllina.jpeg" },
-      { name: "Mules", price: 1200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg' }
-      ];
-      
-    
+      { name: "Mules", price: 1200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg" }
+    ];
+
     const gallery = document.getElementById('adidas-gallery');
     const modal = document.getElementById('productModal');
     const modalImage = document.getElementById('modal-image');
