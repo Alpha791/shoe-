@@ -40,26 +40,6 @@
       font-size: 2rem;
     }
 
-    .promo {
-      background: #ffca28;
-      color: #000;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .info-banner {
-      background: #2c5364;
-      color: white;
-      padding: 10px 20px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 8px;
-      max-width: 90%;
-    }
-
     .search-bar {
       text-align: center;
       margin: 1rem;
@@ -125,21 +105,6 @@
       background-color: #3e8e41;
     }
 
-    .features {
-      background: #1a1a1a;
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-light);
-    }
-
-    .features h2 {
-      margin-bottom: 1rem;
-    }
-
-    .features div {
-      margin: 8px 0;
-    }
-
     footer {
       background-color: #111;
       text-align: center;
@@ -198,29 +163,6 @@
       margin: 0.5rem 0;
       font-weight: 600;
     }
-
-    /* Scroll to Top Button */
-    #scrollTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 40px;
-      right: 30px;
-      z-index: 99;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: var(--primary);
-      color: white;
-      cursor: pointer;
-      padding: 12px 16px;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: opacity 0.4s ease;
-    }
-
-    #scrollTopBtn:hover {
-      background-color: #3e8e41;
-    }
   </style>
 </head>
 
@@ -230,10 +172,6 @@
     <p>Your One-Stop Shoe Gallery</p>
   </header>
 
-  <div class="info-banner">
-    At Frigates Stores, we prioritize speed, convenience, and value.
-  </div>
-
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for shoes..." oninput="filterGallery()">
   </div>
@@ -241,15 +179,6 @@
   <main>
     <div id="adidas-gallery"></div>
   </main>
-
-  <div class="features">
-    <h2>Why Shop With Frigates Stores?</h2>
-    <div>🚚 Fast, convenient & valuable. Place orders via WhatsApp.</div>
-    <div>💸 Affordable Prices from KES 1500</div>
-    <div>📲 Direct WhatsApp Orders</div>
-    <div>👟 Premium Sneakers & Heels for all</div>
-    <div>🛡️ Trusted by 1000+ Customers</div>
-  </div>
 
   <div class="modal" id="productModal">
     <div class="modal-content">
@@ -264,16 +193,33 @@
   <footer>
     <p>Contact Us: <a href="tel:+254717616895">0717616895</a> |
     <a href="https://wa.me/254717616895" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
-    <p>&copy; 2025 Frigates Stores. All rights reserved.</p>
   </footer>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollTopBtn" title="Go to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
   <script>
-    const shoes = [/* your full product array here */];
+    const shoes = [
+      { name: "Ultraboost", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
+      { name: "Superstar", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
+      { name: "NMD R1", price: 1600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
+      { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
+      { name: "Glanzzy", price: 2650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
+      { name: "Sneaker Desktop", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
+      { name: "Transparent", price: 2300, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/a00seeto.png" },
+      { name: "Entering Elegance", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
+      { name: "Heels", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
+      { name: "Heel", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" },
+      { name: "Alexedra", price: 2400, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-alexandra-maria-58259-336372.jpg" },
+      { name: "Martins", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-godisable-jacob-226636-1501210.jpg" },
+      { name: "Lee", price: 1700, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-leeimage7-31884277.jpg" },
+      { name: "Toronto", price: 2300, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" },
+      { name: "ItalianB&B", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItalianB&B.jpeg" },
+      { name: "mamba", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mamba.jpeg" },
+      { name: "M158", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItaliamM156.jpeg" },
+      { name: "Modern Men", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Opi1.jpeg" },
+      { name: "GrandX9", price: 3800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/grand9.jpeg" },
+      { name: "Thai", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/asia.jpeg" },
+      { name: "Crown!", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/4fe5507dc3f69d6fe012e552de719c6d.jpg" },
+      { name: "Nike schocks", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/8402d58e_af92_43ac_80cd_392c86f7e949.jpg" }
+    ];
 
     const gallery = document.getElementById('adidas-gallery');
     const modal = document.getElementById('productModal');
@@ -287,28 +233,12 @@
       filteredShoes.forEach((shoe, index) => {
         const card = document.createElement('div');
         card.className = 'product-card';
-
-        const img = document.createElement('img');
-        img.src = shoe.image;
-        img.alt = shoe.name;
-        img.onclick = () => openModal(index);
-
-        const name = document.createElement('h4');
-        name.textContent = shoe.name;
-
-        const price = document.createElement('p');
-        price.textContent = `KES ${shoe.price}`;
-
-        const button = document.createElement('button');
-        button.className = 'contact-btn';
-        button.textContent = 'Contact';
-        button.onclick = () => openModal(index);
-
-        card.appendChild(img);
-        card.appendChild(name);
-        card.appendChild(price);
-        card.appendChild(button);
-
+        card.innerHTML = `
+          <img src="${shoe.image}" alt="${shoe.name}" onclick="openModal(${index})" />
+          <h4>${shoe.name}</h4>
+          <p>KES ${shoe.price}</p>
+          <button class="contact-btn" onclick="openModal(${index})">Contact</button>
+        `;
         gallery.appendChild(card);
       });
     }
@@ -318,7 +248,7 @@
       modalImage.src = shoe.image;
       modalName.textContent = shoe.name;
       modalPrice.textContent = `KES ${shoe.price}`;
-      whatsappLink.href = `https://wa.me/254717616895?text=Hello! I'm interested in the ${encodeURIComponent(shoe.name)} priced at KES ${shoe.price}.`;
+      whatsappLink.href = `https://wa.me/254717616895?text=Hello! I'm interested in the ${shoe.name} priced at KES ${shoe.price}.`;
       modal.classList.add('active');
     }
 
@@ -331,19 +261,6 @@
       const filtered = shoes.filter(shoe => shoe.name.toLowerCase().includes(query));
       displayShoes(filtered);
     }
-
-    // Scroll to Top Button secure handling
-    document.addEventListener('DOMContentLoaded', function () {
-      const scrollBtn = document.getElementById("scrollTopBtn");
-
-      window.addEventListener('scroll', () => {
-        scrollBtn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
-      });
-
-      scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
 
     displayShoes();
   </script>
