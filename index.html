@@ -5,15 +5,166 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Frigates Stores - Shoe Gallery</title>
 
-  <!-- Performance Optimization -->
+  <!-- Fonts & Icons Optimized -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" media="all" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="all" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
   <style>
-    /* [Styles same as original, unchanged for brevity] */
-    /* Keep all your CSS here as is (unchanged). It’s already well-optimized. */
+    :root {
+      --primary: #4CAF50;
+      --bg-dark: #0e0e0e;
+      --card-bg: #1c1c1c;
+      --text-light: #e0e0e0;
+      --accent: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      padding: 1.5rem;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    .search-bar input {
+      padding: 10px 20px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    main {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    #adidas-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .contact-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .contact-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+      color: white;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 10px; right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #modal-product-price {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
   </style>
 </head>
 
@@ -54,28 +205,12 @@
       { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
       { name: "Glanzzy", price: 2650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
       { name: "Sneaker Desktop", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
-      { name: "Transparent", price: 2300, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/a00seeto.png" },
-      { name: "Entering Elegance", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
-      { name: "Heels", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
-      { name: "Heel", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" },
-      { name: "Alexedra", price: 2400, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-alexandra-maria-58259-336372.jpg" },
-      { name: "Martins", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-godisable-jacob-226636-1501210.jpg" },
-      { name: "Lee", price: 1700, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-leeimage7-31884277.jpg" },
-      { name: "Toronto", price: 2300, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" },
-      { name: "ItalianB&B", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItalianB&B.jpeg" },
-      { name: "mamba", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mamba.jpeg" },
-      { name: "M158", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItaliamM156.jpeg" },
-      { name: "Modern Men", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Opi1.jpeg" },
-      { name: "GrandX9", price: 3800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/grand9.jpeg" },
-      { name: "Thai", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/asia.jpeg" },
-      { name: "Crown!", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/4fe5507dc3f69d6fe012e552de719c6d.jpg" },
-      { name: "Nike schocks", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/8402d58e_af92_43ac_80cd_392c86f7e949.jpg" },
+      { name: "Nike", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/Nike.jpeg" },
       { name: "Airborne", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/OIP.jpeg" },
       { name: "New Balance", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/new balance.jpeg" },
       { name: "Dream", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Dream .jpeg" },
-      {name: "Thor", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/th.jpeg" },
-      { name: "Geers", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/geers.jpeg" },
-      { name: "Nike", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/Nike.jpeg" }
+      { name: "Thor", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/th.jpeg" },
+      { name: "Geers", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/geers.jpeg" }
     ];
 
     const gallery = document.getElementById('adidas-gallery');
