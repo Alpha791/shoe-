@@ -271,7 +271,22 @@
       displayShoes(filtered);
     }
 
-    displayShoes();
+    function closeModal() {
+      document.getElementById("productModal").classList.remove("active");
+    }
+
+    displayGallery(jewelryItems);
+
+    // ---------- SECURITY / PROTECTION ----------
+    document.addEventListener("contextmenu", e => e.preventDefault()); // block right-click
+    document.onkeydown = function(e) {
+      if (e.keyCode == 123 || // F12
+          (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) ||
+          (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0)))) {
+        e.preventDefault();
+        return false;
+      }
+    };
   </script>
 </body>
 </html>
