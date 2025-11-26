@@ -350,6 +350,27 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
+
+    // Close button
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    // Initialize gallery
+    displayShoes();
+
+    // NOTE: disabling right-click and devtools is generally user-hostile and ineffective.
+    // If you still want it, add it with care. For now we do NOT block right-click or devtools.
+    // Example (commented) if you insist:
+    /*
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "F12" || 
+          (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) || 
+          (e.ctrlKey && ["U","S"].includes(e.key.toUpperCase()))) {
+        e.preventDefault();
+        alert("Restricted action blocked for security.");
+      }
+    });
+    */
   </script>
 </body>
 </html>
