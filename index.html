@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Frigates Stores - Shoe Gallery</title>
 
-  <!-- Security Headers -->
+  <!-- Security Headers (keep / tune as needed on server) -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://raw.githubusercontent.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://raw.githubusercontent.com https://via.placeholder.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -24,15 +24,20 @@
       --bg-dark: #0e0e0e;
       --card-bg: #1c1c1c;
       --text-light: #e0e0e0;
+      --muted: #9aa3a8;
+      --focus: #ffd54f;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background: var(--bg-dark);
       color: var(--text-light);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
     header {
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -40,11 +45,14 @@
       text-align: center;
       color: white;
     }
-    header h1 { margin-bottom: .3rem; font-size: 2rem; }
-    main { flex: 1; padding: 1rem; max-width: 1200px; margin: auto; }
+    header h1 { margin-bottom: .3rem; font-size: 1.8rem; }
+    header p { color: var(--muted); margin-top: .25rem; }
+
+    main { flex: 1; padding: 1rem; max-width: 1200px; margin: 1rem auto; width: calc(100% - 2rem); }
+
     #adidas-gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Force 3 shoes per row always */
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
     }
     .product-card {
@@ -52,10 +60,15 @@
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
+    .product-card:focus-within,
     .product-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-5px);
       box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     }
     .product-card img {
@@ -63,20 +76,32 @@
       height: 200px;
       object-fit: cover;
       border-radius: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       cursor: pointer;
+      background: linear-gradient(180deg,#222,#111);
     }
+    .product-card h4 {
+      font-size: 1rem;
+      margin-top: 0.25rem;
+      color: var(--text-light);
+    }
+    .product-card p { color: var(--muted); margin-bottom: 0.5rem; }
+
     .contact-btn {
       background-color: var(--primary);
       color: white;
       border: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.56rem 0.9rem;
       border-radius: 25px;
       cursor: pointer;
       font-weight: 600;
-      transition: 0.3s;
+      transition: 0.18s;
+      text-decoration: none;
+      display: inline-block;
     }
-    .contact-btn:hover { background-color: #43a047; }
+    .contact-btn:hover { background-color: #43a047; transform: translateY(-1px); }
+    .contact-btn:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
+
     footer {
       background: #111;
       text-align: center;
@@ -85,44 +110,63 @@
       margin-top: auto;
     }
     footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
       background: rgba(0,0,0,0.75);
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      padding: 1rem;
     }
     .modal.active { display: flex; }
     .modal-content {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
       border-radius: 12px;
-      padding: 2rem;
+      padding: 1.25rem;
       color: white;
-      max-width: 400px;
+      max-width: 480px;
+      width: 100%;
       text-align: center;
       position: relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
     }
     .modal-content img {
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      max-height: 300px;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      max-height: 360px;
       object-fit: contain;
+      background: #000;
     }
     .modal .close {
       position: absolute;
-      top: 10px; right: 20px;
-      font-size: 1.5rem;
+      top: 10px; right: 14px;
+      font-size: 1.3rem;
       cursor: pointer;
+      color: var(--muted);
+      background: transparent;
+      border: none;
     }
-    #modal-product-price {
-      font-size: 1.2rem;
-      margin: 0.5rem 0;
-      font-weight: 600;
+    .modal .close:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
+    #modal-product-price { font-size: 1.1rem; margin: 0.35rem 0; font-weight: 600; color: var(--text-light); }
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 420px) {
+      .product-card img { height: 160px; }
+      header h1 { font-size: 1.4rem; }
     }
   </style>
 </head>
@@ -133,29 +177,30 @@
   </header>
 
   <main>
-    <div id="adidas-gallery"></div>
+    <div id="adidas-gallery" aria-live="polite"></div>
   </main>
 
   <!-- Modal -->
-  <div class="modal" id="productModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button class="close" id="modalCloseBtn" aria-label="Close product details">&times;</button>
       <img id="modal-image" alt="Product image" />
       <h2 id="modal-product-name"></h2>
       <p id="modal-product-price"></p>
-      <a id="modal-whatsapp-link" class="contact-btn" target="_blank">WhatsApp Us</a>
+      <a id="modal-whatsapp-link" class="contact-btn" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
     </div>
   </div>
 
   <footer>
     <p>
       Contact Us: <a href="tel:+254717616895">0717616895</a> |
-      <a href="https://wa.me/254717616895" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> |
+      <a href="https://wa.me/254717616895" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a> |
       <a href="privacy.html">Privacy Policy</a>
     </p>
   </footer>
 
   <script>
+    // Products dataset
     const shoes = [
       { name: "Ultraboost", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
       { name: "Superstar", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
@@ -190,60 +235,120 @@
       { name: "Valentino", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/valentino.jpeg" },
       { name: "Ballerina flats", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/barelllina.jpeg" },
       { name: "Mules", price: 1200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg" },
-      {name: "Solomon", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/robin-benzrihem-8iZvOp39rzw-unsplash.jpg" },
-      {name: "Terrex", price: 4000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/patrik-laszlo-qvEeYO50deY-unsplash.jpg" },
-      {name: "Columbia", price: 5000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/clay-banks-nj0a29qb_jo-unsplash.jpg" },
-      {name: "Dukathron", price: 4500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ana-azuria-gRTFpyLbIO4-unsplash.jpg" },
-      {name: "Timberland", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/chris-knight-VytE4-Bt4Ds-unsplash.jpg" },
-      {name: "Timberland", price: 2000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" }
+      { name: "Solomon", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/robin-benzrihem-8iZvOp39rzw-unsplash.jpg" },
+      { name: "Terrex", price: 4000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/patrik-laszlo-qvEeYO50deY-unsplash.jpg" },
+      { name: "Columbia", price: 5000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/clay-banks-nj0a29qb_jo-unsplash.jpg" },
+      { name: "Dukathron", price: 4500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ana-azuria-gRTFpyLbIO4-unsplash.jpg" },
+      { name: "Timberland", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/chris-knight-VytE4-Bt4Ds-unsplash.jpg" },
+      { name: "Timberland (2)", price: 2000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" }
     ];
 
+    // DOM refs
     const gallery = document.getElementById('adidas-gallery');
     const modal = document.getElementById('productModal');
     const modalImage = document.getElementById('modal-image');
     const modalName = document.getElementById('modal-product-name');
     const modalPrice = document.getElementById('modal-product-price');
     const whatsappLink = document.getElementById('modal-whatsapp-link');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
 
+    let lastFocusedElement = null;
+
+    // Placeholder for broken images
+    const PLACEHOLDER = 'https://via.placeholder.com/400x300?text=No+Image';
+
+    // Create and display product cards (no innerHTML, safe DOM creation)
     function displayShoes(list = shoes) {
       gallery.innerHTML = '';
       list.forEach((shoe, index) => {
-        const card = document.createElement('div');
+        const card = document.createElement('article');
         card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${shoe.image}" alt="${shoe.name}" loading="lazy"
-          onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'"
-          onclick="openModal(${index})"/>
-          <h4>${shoe.name}</h4>
-          <p>KES ${shoe.price}</p>
-          <button class="contact-btn" onclick="openModal(${index})">Contact</button>
-        `;
+        card.setAttribute('tabindex', '0'); // make focusable for keyboard users
+        card.setAttribute('aria-labelledby', `shoe-name-${index}`);
+
+        // Image
+        const img = document.createElement('img');
+        img.src = shoe.image || PLACEHOLDER;
+        img.alt = shoe.name;
+        img.loading = 'lazy';
+        img.addEventListener('error', () => { img.src = PLACEHOLDER; });
+        img.addEventListener('click', () => openModal(index));
+        img.addEventListener('keydown', (e) => { if (e.key === 'Enter') openModal(index); });
+
+        // Name
+        const h4 = document.createElement('h4');
+        h4.id = `shoe-name-${index}`;
+        h4.textContent = shoe.name;
+
+        // Price
+        const p = document.createElement('p');
+        p.textContent = `KES ${shoe.price}`;
+
+        // Contact button
+        const btn = document.createElement('a');
+        btn.href = '#';
+        btn.className = 'contact-btn';
+        btn.textContent = 'Contact';
+        btn.setAttribute('role', 'button');
+        btn.addEventListener('click', (evt) => {
+          evt.preventDefault();
+          openModal(index);
+        });
+
+        // Append elements
+        card.appendChild(img);
+        card.appendChild(h4);
+        card.appendChild(p);
+        card.appendChild(btn);
         gallery.appendChild(card);
       });
     }
 
+    // Open modal with product details
     function openModal(index) {
       const shoe = shoes[index];
-      modalImage.src = shoe.image;
+      if (!shoe) return;
+
+      lastFocusedElement = document.activeElement;
+
+      modalImage.src = shoe.image || PLACEHOLDER;
+      // Ensure fallback if image fails
+      modalImage.onerror = () => { modalImage.src = PLACEHOLDER; };
+
       modalName.textContent = shoe.name;
       modalPrice.textContent = `KES ${shoe.price}`;
-      whatsappLink.href = `https://wa.me/254717616895?text=Hello! can I get more info on this ${shoe.name} priced at KES ${shoe.price}.`;
+
+      const message = `Hello! Can I get more info on ${shoe.name} priced at KES ${shoe.price}?`;
+      whatsappLink.href = `https://wa.me/254717616895?text=${encodeURIComponent(message)}`;
+      whatsappLink.setAttribute('rel', 'noopener noreferrer');
+
+      // Show modal
       modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      // put focus inside modal for accessibility
+      modalCloseBtn.focus();
+      // trap (simple) - keyboard: listen for Escape
+      document.addEventListener('keydown', onDocumentKeyDown);
     }
-    function closeModal() { modal.classList.remove('active'); }
 
-    // Load gallery
-    displayShoes();
-
-    // Disable right click and common shortcuts
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "F12" || 
-          (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) || 
-          (e.ctrlKey && ["U","S"].includes(e.key.toUpperCase()))) {
-        e.preventDefault();
-        alert("Restricted action blocked for security.");
+    function closeModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      // restore previous focus
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
       }
+      document.removeEventListener('keydown', onDocumentKeyDown);
+    }
+
+    // Close on Escape
+    function onDocumentKeyDown(e) {
+      if (e.key === 'Escape') closeModal();
+    }
+
+    // Close when clicking outside the modal content
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
   </script>
 </body>
