@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Frigates Stores - Shoe Gallery</title>
-
-  <!-- Security Headers (keep / tune as needed on server) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://raw.githubusercontent.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://raw.githubusercontent.com https://via.placeholder.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,154 +12,186 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
   <style>
-    :root {
-      --primary: #4CAF50;
-      --bg-dark: #0e0e0e;
-      --card-bg: #1c1c1c;
-      --text-light: #e0e0e0;
-      --muted: #9aa3a8;
+    :root{
+      --primary:#4CAF50;
+      --bg:#0e0e0e;
+      --card:#141414;
+      --muted:#9aa3a8;
+      --text:#eaeaea;
+      --glass: rgba(255,255,255,0.04);
       --focus: #ffd54f;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg-dark);
-      color: var(--text-light);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
     }
-    header {
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      padding: 1.5rem;
-      text-align: center;
-      color: white;
-    }
-    header h1 { margin-bottom: .3rem; font-size: 1.8rem; }
-    header p { color: var(--muted); margin-top: .25rem; }
 
-    main { flex: 1; padding: 1rem; max-width: 1200px; margin: 1rem auto; width: calc(100% - 2rem); }
-
-    #adidas-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
+    header{
+      background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
+      padding:1.25rem;
+      text-align:center;
+      color:#fff;
     }
-    .product-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+    header h1{font-size:1.6rem;margin:0}
+    header p{color:var(--muted);margin-top:.25rem;font-size:.95rem}
+
+    /* category bar */
+    .container{width:calc(100% - 2rem);max-width:1200px;margin:1rem auto}
+    #category-bar{
+      display:flex;
+      gap:.5rem;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:1rem;
+    }
+    .cat-btn{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--text);
+      padding:.5rem .75rem;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:.85rem;
+    }
+    .cat-btn:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.45)}
+    .cat-btn.active{
+      background:linear-gradient(180deg,var(--primary),#43a047);
+      border-color:transparent;
+      color:#071314;
+    }
+
+    /* gallery grid */
+    #adidas-gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1rem;
+    }
+    .product-card{
+      background:var(--card);
+      border-radius:12px;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      transition:transform .18s ease,box-shadow .18s ease;
+      min-height:320px;
     }
     .product-card:focus-within,
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    }
-    .product-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 6px;
-      cursor: pointer;
-      background: linear-gradient(180deg,#222,#111);
-    }
-    .product-card h4 {
-      font-size: 1rem;
-      margin-top: 0.25rem;
-      color: var(--text-light);
-    }
-    .product-card p { color: var(--muted); margin-bottom: 0.5rem; }
-
-    .contact-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.56rem 0.9rem;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.18s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .contact-btn:hover { background-color: #43a047; transform: translateY(-1px); }
-    .contact-btn:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
-
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-    footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
-    footer a:hover { text-decoration: underline; }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 1rem;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 1.25rem;
-      color: white;
-      max-width: 480px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-    }
-    .modal-content img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.75rem;
-      max-height: 360px;
-      object-fit: contain;
-      background: #000;
-    }
-    .modal .close {
-      position: absolute;
-      top: 10px; right: 14px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      color: var(--muted);
-      background: transparent;
-      border: none;
-    }
-    .modal .close:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
-    #modal-product-price { font-size: 1.1rem; margin: 0.35rem 0; font-weight: 600; color: var(--text-light); }
-    .sr-only {
-      position: absolute;
-      left: -10000px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
+    .product-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 30px rgba(0,0,0,.6);
     }
 
-    @media (max-width: 420px) {
-      .product-card img { height: 160px; }
-      header h1 { font-size: 1.4rem; }
+    .img-wrap{
+      width:100%;
+      height:200px;
+      border-radius:10px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#111,#0a0a0a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .img-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:blur(8px);
+      opacity:0;
+      transition:filter .45s ease,opacity .45s ease;
+    }
+    .img-wrap img.loaded{ filter:blur(0); opacity:1; }
+
+    .meta{ padding:.6rem 0; text-align:center; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+    .meta h4{ margin:0 0 .4rem 0; font-size:1rem; color:var(--text) }
+    .meta p{ margin:0; color:var(--muted); font-weight:600 }
+
+    .actions{ display:flex; gap:.5rem; justify-content:center; margin-top:.6rem }
+    .contact-btn{
+      background:var(--primary);
+      color:#071314;
+      border:none;
+      padding:.56rem .9rem;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+    }
+    .contact-btn:focus{ outline:3px solid var(--focus); outline-offset:3px }
+
+    /* modal */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      z-index:999;
+      justify-content:center;
+      align-items:center;
+      padding:1rem;
+    }
+    .modal.active{ display:flex }
+    .modal-content{
+      width:100%;
+      max-width:520px;
+      background:var(--glass);
+      border-radius:12px;
+      padding:1rem;
+      color:var(--text);
+      box-shadow:0 20px 60px rgba(0,0,0,.7);
+      position:relative;
+      text-align:center;
+    }
+    .modal-content img{ width:100%; max-height:380px; object-fit:contain; border-radius:8px; background:#000 }
+    .modal-close{
+      position:absolute;
+      right:10px;
+      top:8px;
+      background:transparent;
+      border:none;
+      font-size:1.4rem;
+      color:var(--muted);
+      cursor:pointer;
+    }
+    .modal-close:focus{ outline:3px solid var(--focus); outline-offset:3px }
+
+    /* floating whatsapp */
+    #floating-whatsapp{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:#25D366;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1001;
+      box-shadow:0 10px 26px rgba(0,0,0,.45);
+      text-decoration:none;
+      font-size:28px;
+    }
+
+    /* small screens */
+    @media (max-width:420px){
+      .img-wrap{ height:160px }
     }
   </style>
 </head>
@@ -176,201 +201,277 @@
     <p>Your One-Stop Shoe Gallery</p>
   </header>
 
-  <main>
-    <div id="adidas-gallery" aria-live="polite"></div>
-  </main>
+  <div class="container">
+    <!-- Categories will be injected here -->
+    <div id="category-bar" aria-label="Categories"></div>
+
+    <!-- Gallery -->
+    <main id="adidas-gallery" aria-live="polite"></main>
+  </div>
 
   <!-- Modal -->
-  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="productModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-content" role="document">
-      <button class="close" id="modalCloseBtn" aria-label="Close product details">&times;</button>
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
       <img id="modal-image" alt="Product image" />
       <h2 id="modal-product-name"></h2>
       <p id="modal-product-price"></p>
-      <a id="modal-whatsapp-link" class="contact-btn" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+      <p id="modal-product-cats" style="color:var(--muted); margin-top: .25rem; font-size:.95rem;"></p>
+      <div style="margin-top:.8rem">
+        <a id="modal-whatsapp-link" class="contact-btn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
     </div>
   </div>
 
-  <footer>
-    <p>
-      Contact Us: <a href="tel:+254717616895">0717616895</a> |
-      <a href="https://wa.me/254717616895" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a> |
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-  </footer>
+  <!-- Floating WhatsApp -->
+  <a id="floating-whatsapp" target="_blank" rel="noopener noreferrer"
+     href="https://wa.me/254717616895?text=Hello%20Frigates%20Stores%20I%20need%20help%20with%20a%20product">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="sr-only" style="position:absolute;left:-9999px">WhatsApp</span>
+  </a>
 
   <script>
-    // Products dataset
+    // ---------- Data (all shoes from original list, with category arrays) ----------
     const shoes = [
-      { name: "Ultraboost", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
-      { name: "Superstar", price: 1800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
-      { name: "NMD R1", price: 1600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
-      { name: "Yeezy Boost 350", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
-      { name: "Glanzzy", price: 2650, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
-      { name: "Sneaker Desktop", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
-      { name: "Nike", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Nike.jpeg" },
-      { name: "Airborne", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/OIP.jpeg" },
-      { name: "New Balance", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/new%20balance.jpeg" },
-      { name: "Dream", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Dream%20.jpeg" },
-      { name: "Thor", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/th.jpeg" },
-      { name: "Geers", price: 2800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/geers.jpeg" },
-      { name: "Entering Elegance", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
-      { name: "Heels", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
-      { name: "Heel", price: 2200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" },
-      { name: "Alexedra", price: 2400, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-alexandra-maria-58259-336372.jpg" },
-      { name: "Martins", price: 2600, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-godisable-jacob-226636-1501210.jpg" },
-      { name: "Lee", price: 1700, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-leeimage7-31884277.jpg" },
-      { name: "Toronto", price: 2300, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" },
-      { name: "ItalianB&B", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItalianB&B.jpeg" },
-      { name: "mamba", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mamba.jpeg" },
-      { name: "M158", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItaliamM156.jpeg" },
-      { name: "Modern Men", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Opi1.jpeg" },
-      { name: "GrandX9", price: 3800, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/grand9.jpeg" },
-      { name: "Thai", price: 3000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/asia.jpeg" },
-      { name: "Crown!", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/4fe5507dc3f69d6fe012e552de719c6d.jpg" },
-      { name: "Mules Heels", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/81Oakz0KYCL.jpg" },
-      { name: "Paris", price: 2000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/best-shoe-brands-for-women-lou.jpg" },
-      { name: "Gradiator heels", price: 2000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/gradiaror.jpeg" },
-      { name: "Paris Heels", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/paris.jpeg" },
-      { name: "Valentino", price: 2500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/valentino.jpeg" },
-      { name: "Ballerina flats", price: 1500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/barelllina.jpeg" },
-      { name: "Mules", price: 1200, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg" },
-      { name: "Solomon", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/robin-benzrihem-8iZvOp39rzw-unsplash.jpg" },
-      { name: "Terrex", price: 4000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/patrik-laszlo-qvEeYO50deY-unsplash.jpg" },
-      { name: "Columbia", price: 5000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/clay-banks-nj0a29qb_jo-unsplash.jpg" },
-      { name: "Dukathron", price: 4500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ana-azuria-gRTFpyLbIO4-unsplash.jpg" },
-      { name: "Timberland", price: 3500, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/chris-knight-VytE4-Bt4Ds-unsplash.jpg" },
-      { name: "Timberland (2)", price: 2000, image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" }
+      { name: "Ultraboost", price: 1500, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
+      { name: "Superstar", price: 1800, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
+      { name: "NMD R1", price: 1600, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
+      { name: "Yeezy Boost 350", price: 2500, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
+      { name: "Glanzzy", price: 2650, categories: ["women","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
+      { name: "Sneaker Desktop", price: 2800, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
+      { name: "Nike", price: 3000, categories: ["men","sneakers"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Nike.jpeg" },
+      { name: "Airborne", price: 2200, categories: ["men","boots"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/OIP.jpeg" },
+      { name: "New Balance", price: 2500, categories: ["men","sneakers"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/new%20balance.jpeg" },
+      { name: "Dream", price: 3000, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Dream%20.jpeg" },
+      { name: "Thor", price: 2200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/th.jpeg" },
+      { name: "Geers", price: 2800, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/geers.jpeg" },
+      { name: "Entering Elegance", price: 2500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
+      { name: "Heels", price: 2600, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
+      { name: "Heel", price: 2200, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" },
+      { name: "Alexedra", price: 2400, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-alexandra-maria-58259-336372.jpg" },
+      { name: "Martins", price: 2600, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-godisable-jacob-226636-1501210.jpg" },
+      { name: "Lee", price: 1700, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-leeimage7-31884277.jpg" },
+      { name: "Toronto", price: 2300, categories: ["men","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" },
+      { name: "ItalianB&B", price: 2500, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItalianB&B.jpeg" },
+      { name: "mamba", price: 2500, categories: ["sneakers","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mamba.jpeg" },
+      { name: "M158", price: 3000, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItaliamM156.jpeg" },
+      { name: "Modern Men", price: 3500, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Opi1.jpeg" },
+      { name: "GrandX9", price: 3800, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/grand9.jpeg" },
+      { name: "Thai", price: 3000, categories: ["unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/asia.jpeg" },
+      { name: "Crown!", price: 3500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/4fe5507dc3f69d6fe012e552de719c6d.jpg" },
+      { name: "Mules Heels", price: 1500, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/81Oakz0KYCL.jpg" },
+      { name: "Paris", price: 2000, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/best-shoe-brands-for-women-lou.jpg" },
+      { name: "Gradiator heels", price: 2000, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/gradiaror.jpeg" },
+      { name: "Paris Heels", price: 2500, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/paris.jpeg" },
+      { name: "Valentino", price: 2500, categories: ["women","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/valentino.jpeg" },
+      { name: "Ballerina flats", price: 1500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/barelllina.jpeg" },
+      { name: "Mules", price: 1200, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg" },
+      { name: "Solomon", price: 3500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/robin-benzrihem-8iZvOp39rzw-unsplash.jpg" },
+      { name: "Terrex", price: 4000, categories: ["boots","men","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/patrik-laszlo-qvEeYO50deY-unsplash.jpg" },
+      { name: "Columbia", price: 5000, categories: ["boots","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/clay-banks-nj0a29qb_jo-unsplash.jpg" },
+      { name: "Dukathron", price: 4500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ana-azuria-gRTFpyLbIO4-unsplash.jpg" },
+      { name: "Timberland", price: 3500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/chris-knight-VytE4-Bt4Ds-unsplash.jpg" },
+      { name: "Timberland (2)", price: 2000, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" }
     ];
 
-    // DOM refs
+    // ---------- Utilities ----------
+    const CATEGORY_ORDER = ["all","sneakers","boots","heels","men","women","unisex"];
+    const PLACEHOLDER = "https://via.placeholder.com/600x400?text=No+Image";
+
+    // ---------- Build category list automatically from shoes ----------
+    const categorySet = new Set();
+    shoes.forEach(s => (s.categories || []).forEach(c => categorySet.add(c)));
+    // ensure all base categories exist in set (for ordering)
+    CATEGORY_ORDER.forEach(c => categorySet.add(c));
+    const categories = Array.from(categorySet).filter(Boolean);
+
+    // ---------- DOM refs ----------
+    const categoryBar = document.getElementById('category-bar');
     const gallery = document.getElementById('adidas-gallery');
     const modal = document.getElementById('productModal');
-    const modalImage = document.getElementById('modal-image');
+    const modalClose = document.getElementById('modalClose');
+    const modalImg = document.getElementById('modal-image');
     const modalName = document.getElementById('modal-product-name');
     const modalPrice = document.getElementById('modal-product-price');
-    const whatsappLink = document.getElementById('modal-whatsapp-link');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalCats = document.getElementById('modal-product-cats');
+    const modalWp = document.getElementById('modal-whatsapp-link');
+    let lastFocused = null;
 
-    let lastFocusedElement = null;
-
-    // Placeholder for broken images
-    const PLACEHOLDER = 'https://via.placeholder.com/400x300?text=No+Image';
-
-    // Create and display product cards (no innerHTML, safe DOM creation)
-    function displayShoes(list = shoes) {
-      gallery.innerHTML = '';
-      list.forEach((shoe, index) => {
-        const card = document.createElement('article');
-        card.className = 'product-card';
-        card.setAttribute('tabindex', '0'); // make focusable for keyboard users
-        card.setAttribute('aria-labelledby', `shoe-name-${index}`);
-
-        // Image
-        const img = document.createElement('img');
-        img.src = shoe.image || PLACEHOLDER;
-        img.alt = shoe.name;
-        img.loading = 'lazy';
-        img.addEventListener('error', () => { img.src = PLACEHOLDER; });
-        img.addEventListener('click', () => openModal(index));
-        img.addEventListener('keydown', (e) => { if (e.key === 'Enter') openModal(index); });
-
-        // Name
-        const h4 = document.createElement('h4');
-        h4.id = `shoe-name-${index}`;
-        h4.textContent = shoe.name;
-
-        // Price
-        const p = document.createElement('p');
-        p.textContent = `KES ${shoe.price}`;
-
-        // Contact button
-        const btn = document.createElement('a');
-        btn.href = '#';
-        btn.className = 'contact-btn';
-        btn.textContent = 'Contact';
-        btn.setAttribute('role', 'button');
-        btn.addEventListener('click', (evt) => {
-          evt.preventDefault();
-          openModal(index);
+    // ---------- Create category buttons (ordered) ----------
+    function renderCategoryButtons(){
+      categoryBar.innerHTML = '';
+      // ensure 'all' first
+      const ordered = CATEGORY_ORDER.concat(categories.filter(c => !CATEGORY_ORDER.includes(c)));
+      const uniqueOrdered = [...new Set(ordered)];
+      uniqueOrdered.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'cat-btn';
+        btn.type = 'button';
+        btn.dataset.cat = cat;
+        btn.textContent = cat.toUpperCase();
+        if (cat === 'all') btn.classList.add('active');
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          filterCategory(cat);
         });
-
-        // Append elements
-        card.appendChild(img);
-        card.appendChild(h4);
-        card.appendChild(p);
-        card.appendChild(btn);
-        gallery.appendChild(card);
+        categoryBar.appendChild(btn);
       });
     }
 
-    // Open modal with product details
-    function openModal(index) {
+    // ---------- Image lazy loader using IntersectionObserver ----------
+    const ioOptions = { root: null, rootMargin: '200px', threshold: 0.01 };
+    const imgObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        const src = img.dataset.src;
+        if (src) {
+          img.src = src;
+          img.onload = () => img.classList.add('loaded');
+          img.onerror = () => { img.src = PLACEHOLDER; img.classList.add('loaded'); };
+          img.removeAttribute('data-src');
+        }
+        obs.unobserve(img);
+      });
+    }, ioOptions);
+
+    // ---------- Render gallery ----------
+    function renderGallery(list){
+      gallery.innerHTML = '';
+      list.forEach((shoe, idx) => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.tabIndex = 0;
+
+        // Image wrapper
+        const imgWrap = document.createElement('div');
+        imgWrap.className = 'img-wrap';
+
+        const img = document.createElement('img');
+        img.alt = shoe.name;
+        // set placeholder tiny blank image initially (keeps layout) then lazy load real via data-src
+        img.src = PLACEHOLDER; // fallback/initial
+        img.dataset.src = shoe.image || PLACEHOLDER;
+        img.loading = 'lazy';
+
+        img.addEventListener('click', () => openModal(idx));
+        img.addEventListener('keydown', (e) => { if (e.key === 'Enter') openModal(idx); });
+
+        imgWrap.appendChild(img);
+
+        // meta
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+
+        const h = document.createElement('h4');
+        h.textContent = shoe.name;
+
+        const p = document.createElement('p');
+        p.textContent = 'KES ' + shoe.price;
+
+        meta.appendChild(h);
+        meta.appendChild(p);
+
+        // actions
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+
+        const btn = document.createElement('button');
+        btn.className = 'contact-btn';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="fab fa-whatsapp" aria-hidden="true"></i> Contact';
+        btn.addEventListener('click', () => openModal(idx));
+
+        actions.appendChild(btn);
+
+        // assemble card
+        card.appendChild(imgWrap);
+        card.appendChild(meta);
+        card.appendChild(actions);
+
+        gallery.appendChild(card);
+
+        // observe image for lazy loading
+        imgObserver.observe(img);
+      });
+    }
+
+    // ---------- Filtering ----------
+    function filterCategory(cat){
+      if (!cat || cat === 'all') {
+        renderGallery(shoes);
+        return;
+      }
+      // show items that have the category in their categories array
+      const filtered = shoes.filter(s => Array.isArray(s.categories) && s.categories.includes(cat));
+      renderGallery(filtered);
+    }
+
+    // ---------- Modal behavior ----------
+    function openModal(index){
       const shoe = shoes[index];
       if (!shoe) return;
+      lastFocused = document.activeElement;
 
-      lastFocusedElement = document.activeElement;
-
-      modalImage.src = shoe.image || PLACEHOLDER;
-      // Ensure fallback if image fails
-      modalImage.onerror = () => { modalImage.src = PLACEHOLDER; };
-
+      modalImg.src = shoe.image || PLACEHOLDER;
+      modalImg.onerror = () => { modalImg.src = PLACEHOLDER; };
       modalName.textContent = shoe.name;
-      modalPrice.textContent = `KES ${shoe.price}`;
+      modalPrice.textContent = 'KES ' + shoe.price;
+      modalCats.textContent = 'Categories: ' + (shoe.categories || []).join(', ');
 
-      const message = `Hello! Can I get more info on ${shoe.name} priced at KES ${shoe.price}?`;
-      whatsappLink.href = `https://wa.me/254717616895?text=${encodeURIComponent(message)}`;
-      whatsappLink.setAttribute('rel', 'noopener noreferrer');
+      const message = `Hello! I would like info about ${shoe.name} priced at KES ${shoe.price}.`;
+      modalWp.href = 'https://wa.me/254717616895?text=' + encodeURIComponent(message);
 
-      // Show modal
       modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      // put focus inside modal for accessibility
-      modalCloseBtn.focus();
-      // trap (simple) - keyboard: listen for Escape
-      document.addEventListener('keydown', onDocumentKeyDown);
+      modal.setAttribute('aria-hidden','false');
+      modal.querySelector('.modal-close').focus();
+
+      document.addEventListener('keydown', modalKeyHandler);
     }
 
-    function closeModal() {
+    function closeModal(){
       modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      // restore previous focus
-      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-        lastFocusedElement.focus();
-      }
-      document.removeEventListener('keydown', onDocumentKeyDown);
+      modal.setAttribute('aria-hidden','true');
+      document.removeEventListener('keydown', modalKeyHandler);
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     }
 
-    // Close on Escape
-    function onDocumentKeyDown(e) {
+    function modalKeyHandler(e){
       if (e.key === 'Escape') closeModal();
+      // simple focus trap if desired could be added later
     }
 
-    // Close when clicking outside the modal content
+    // close by clicking outside content
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
+    modalClose.addEventListener('click', closeModal);
 
-    // Close button
-    modalCloseBtn.addEventListener('click', closeModal);
+    // ---------- Initialize ----------
+    renderCategoryButtons();
+    renderGallery(shoes);
 
-    // Initialize gallery
-    displayShoes();
-
-    // NOTE: disabling right-click and devtools is generally user-hostile and ineffective.
-    // If you still want it, add it with care. For now we do NOT block right-click or devtools.
-    // Example (commented) if you insist:
-    /*
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "F12" || 
-          (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) || 
-          (e.ctrlKey && ["U","S"].includes(e.key.toUpperCase()))) {
-        e.preventDefault();
-        alert("Restricted action blocked for security.");
+    // ---------- Accessibility: ensure keyboard opens modal when card focused + Enter ----------
+    gallery.addEventListener('keydown', (e) => {
+      const card = e.target.closest('.product-card');
+      if (!card) return;
+      if (e.key === 'Enter') {
+        // find index of card
+        const cards = Array.from(document.querySelectorAll('.product-card'));
+        const idx = cards.indexOf(card);
+        if (idx >= 0) openModal(idx);
       }
     });
-    */
+
+    // ---------- Improve perceived performance: preload small number of images (optional) ----------
+    // Preload first 3 images to reduce perceived load time for above-the-fold
+    shoes.slice(0,3).forEach(s => {
+      const i = new Image();
+      i.src = s.image;
+    });
   </script>
 </body>
 </html>
