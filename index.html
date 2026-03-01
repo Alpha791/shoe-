@@ -367,6 +367,23 @@ modal.onclick=e=>{ if(e.target===modal) modal.classList.remove("active") }
 
 renderCategories();
 renderGallery(shoes);
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', function(e) {
+    if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key)) ||
+        (e.ctrlKey && ["U","S"].includes(e.key))
+    ) {
+        e.preventDefault();
+    }
+});
+
+// Disable text selection
+document.addEventListener('selectstart', e => e.preventDefault());
+
+// Disable drag
+document.addEventListener('dragstart', e => e.preventDefault());
 </script>
 </body>
 </html>
