@@ -200,9 +200,8 @@
     img {
       user-select: none;
       -webkit-user-drag: none;
-      pointer-events: auto; /* keep clicks functional */
+      pointer-events: auto;
     }
-    /* additional refinement: prevent pull-to-refresh on mobile overscroll */
     body {
       overscroll-behavior-y: contain;
     }
@@ -240,33 +239,58 @@
 
 <script>
 (function() {
-  // ===== RIGHT CLICK RESTRICTION =====
+  // ===== AGGRESSIVE RIGHT CLICK RESTRICTION =====
+  // Method 1: Standard preventDefault on contextmenu (most reliable)
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-    // optional: gentle feedback (commented to stay stealth)
-    // console.log('right click disabled');
+    return false;
   });
-
-  // also block common image stealing shortcuts: print screen can't be blocked fully,
-  // but we can warn or disable keys. We'll block Ctrl+S, Ctrl+Shift+I, Ctrl+U etc.
+  
+  // Method 2: Also prevent default on mousedown for right button (extra layer)
+  document.addEventListener('mousedown', function(e) {
+    if (e.button === 2) { // right click
+      e.preventDefault();
+      return false;
+    }
+  });
+  
+  // Method 3: Prevent mouseup on right button as well
+  document.addEventListener('mouseup', function(e) {
+    if (e.button === 2) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  
+  // Method 4: Block context menu on all elements specifically
+  const allElements = document.getElementsByTagName('*');
+  for (let i = 0; i < allElements.length; i++) {
+    allElements[i].addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+  }
+  
+  // Also block common keyboard shortcuts for DevTools/save
   document.addEventListener('keydown', function(e) {
-    // block Ctrl+Shift+I (DevTools), Ctrl+Shift+J, Ctrl+U (view source)
+    // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
     if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
       e.preventDefault();
     }
-    if (e.ctrlKey && e.key === 'u' || e.key === 'U') {
+    // Block Ctrl+U (view source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
       e.preventDefault();
     }
-    // block Ctrl+S (save)
-    if (e.ctrlKey && e.key === 's' || e.key === 'S') {
+    // Block Ctrl+S (save)
+    if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
       e.preventDefault();
     }
-    // block Ctrl+P (print) – optional
-    if (e.ctrlKey && e.key === 'p' || e.key === 'P') {
-      e.preventDefault();
-    }
-    // block F12 a bit more stubborn
+    // Block F12
     if (e.key === 'F12') {
+      e.preventDefault();
+    }
+    // Block Ctrl+Shift+U (some browsers)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'u' || e.key === 'U')) {
       e.preventDefault();
     }
   });
@@ -377,7 +401,7 @@
       img.dataset.src=shoe.image;
       img.src="https://via.placeholder.com/600x400/000/ffffff?text=Loading...";
       img.loading="lazy";
-      img.alt=shoe.name; // accessibility improvement
+      img.alt=shoe.name;
       img.onclick=()=>openModal(i);
       wrap.appendChild(img);
 
@@ -416,12 +440,24 @@
   renderCategories();
   renderGallery(shoes);
 
-  // Additional refinement: block image dragstart globally (redundant with css but extra safe)
+  // Additional refinement: block image dragstart globally
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('dragstart', (e) => e.preventDefault());
   });
-  // also apply to dynamically added images via MutationObserver (optional but robust)
-  const observer = new MutationObserver((mutations) => {
+  
+  // Apply right-click restriction to all future elements as well
+  const rightClickObserver = new MutationObserver(() => {
+    document.querySelectorAll('*').forEach(el => {
+      if (!el.hasAttribute('data-rc-protected')) {
+        el.addEventListener('contextmenu', (e) => e.preventDefault());
+        el.setAttribute('data-rc-protected', 'true');
+      }
+    });
+  });
+  rightClickObserver.observe(document.body, { childList: true, subtree: true });
+  
+  // Also protect any new images from being dragged
+  const dragObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((node) => {
         if (node.nodeName === 'IMG') {
@@ -432,10 +468,9 @@
       });
     });
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+  dragObserver.observe(document.body, { childList: true, subtree: true });
 
 })();
 </script>
-<!-- ensure all images get no-drag after any dynamic update -->
 </body>
 </html>
