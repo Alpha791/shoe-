@@ -7,8 +7,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Google Fonts kept with display=swap to avoid blocking text rendering -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Load Font Awesome asynchronously (non-render-blocking) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
   <style>
     :root{
@@ -26,7 +30,7 @@
       font-family:'Poppins',system-ui;
       background:var(--bg);
       color:var(--text);
-      animation:fadeInPage 1s ease forwards;
+      animation:fadeInPage .6s ease forwards; /* shortened */
     }
     @keyframes fadeInPage{
       from{opacity:0}
@@ -37,6 +41,10 @@
       background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
       padding:1.25rem;
       text-align:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:1rem;
     }
 
     #category-bar{
@@ -45,11 +53,11 @@
       flex-wrap:wrap;
       justify-content:center;
       margin:1rem 0;
-      animation:fadeUp 1s ease;
+      animation:fadeUp .5s ease; /* shortened */
     }
 
     @keyframes fadeUp{
-      from{opacity:0;transform:translateY(20px)}
+      from{opacity:0;transform:translateY(12px)}
       to{opacity:1;transform:translateY(0)}
     }
 
@@ -60,16 +68,16 @@
       border-radius:999px;
       cursor:pointer;
       font-weight:600;
-      transition:all .3s ease;
+      transition:all .18s ease;
     }
     .cat-btn:hover{
-      transform:scale(1.08);
-      background:rgba(255,255,255,0.15);
+      transform:scale(1.06);
+      background:rgba(255,255,255,0.12);
     }
     .cat-btn.active{
       background:var(--primary);
       color:#0e0e0e;
-      transform:scale(1.1);
+      transform:scale(1.08);
     }
 
     #adidas-gallery{
@@ -77,7 +85,7 @@
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:1rem;
       padding-bottom:3rem;
-      transition:opacity .4s ease;
+      transition:opacity .28s ease;
     }
 
     .product-card{
@@ -88,10 +96,10 @@
       display:flex;
       flex-direction:column;
       align-items:stretch;
-      transition:all .3s ease;
+      transition:all .22s ease;
       opacity:0;
-      transform:translateY(25px);
-      animation:fadePop .8s ease forwards;
+      transform:translateY(18px);
+      animation:fadePop .5s ease forwards; /* shortened */
     }
 
     @keyframes fadePop{
@@ -99,8 +107,8 @@
     }
 
     .product-card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 12px 35px rgba(0,0,0,.6);
+      transform:translateY(-6px) scale(1.02);
+      box-shadow:0 12px 28px rgba(0,0,0,.55);
     }
 
     .img-wrap{
@@ -120,7 +128,7 @@
       opacity:0;
     }
     .img-wrap img.loaded{ filter:blur(0); opacity:1; }
-    .img-wrap:hover img{ transform:scale(1.15); }
+    .img-wrap:hover img{ transform:scale(1.12); }
 
     .meta{text-align:center;margin-top:.5rem}
     .meta h4{margin:0;font-size:1rem}
@@ -137,12 +145,25 @@
       align-items:center;
       gap:.5rem;
       margin:10px auto 0;
-      transition:all .25s ease;
+      transition:all .18s ease;
     }
     .contact-btn:hover{
-      transform:scale(1.07);
+      transform:scale(1.05);
       box-shadow:0 6px 18px rgba(0,0,0,.4);
     }
+
+    .lab-btn{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.12);
+      padding:.45rem .75rem;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      text-decoration:none;
+      transition:all .18s ease;
+    }
+    .lab-btn:hover{ background:rgba(255,255,255,0.06); }
 
     .modal{
       position:fixed;
@@ -156,11 +177,11 @@
 
     .modal.active{
       display:flex;
-      animation:zoomIn .4s ease;
+      animation:zoomIn .3s ease;
     }
 
     @keyframes zoomIn{
-      from{opacity:0;transform:scale(.5)}
+      from{opacity:0;transform:scale(.6)}
       to{opacity:1;transform:scale(1)}
     }
 
@@ -210,9 +231,15 @@
 <body>
 
 <header>
-  <img src="images/frigates.png" alt="Frigates Stores Logo" style="width:90px;height:auto;margin-bottom:10px;">
-  <h1>Frigates Stores</h1>
-  <p>Your One-Stop Shoe Gallery</p>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <img src="images/frigates.png" alt="Frigates Stores Logo" style="width:72px;height:auto;margin-bottom:0;">
+    <div style="text-align:left">
+      <h1 style="margin:0">Frigates Stores</h1>
+      <p style="margin:0;font-size:.9rem;color:var(--muted);">Your One-Stop Shoe Gallery</p>
+    </div>
+  </div>
+  <!-- Visit Labs button: opens the requested external URL in a new tab -->
+  <a class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F" target="_blank" rel="noopener noreferrer" style="margin-left:auto;">Visit Labs</a>
 </header>
 
 
@@ -228,7 +255,11 @@
     <h2 id="modal-product-name"></h2>
     <p id="modal-product-price"></p>
     <p id="modal-product-cats" style="color:#aaa"></p>
-    <a id="modal-whatsapp-link" target="_blank" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.5rem">
+      <a id="modal-whatsapp-link" target="_blank" class="contact-btn" style="text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      <!-- Extra button to open the Labs URL directly from product modal -->
+      <a id="modal-labs-link" target="_blank" class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F">Open Labs</a>
+    </div>
   </div>
 </div>
 
@@ -239,55 +270,9 @@
 <script>
 (function() {
  
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-  });
-  
-  document.addEventListener('mousedown', function(e) {
-    if (e.button === 2) { 
-      e.preventDefault();
-      return false;
-    }
-  });
-  
-  document.addEventListener('mouseup', function(e) {
-    if (e.button === 2) {
-      e.preventDefault();
-      return false;
-    }
-  });
-  
-  const allElements = document.getElementsByTagName('*');
-  for (let i = 0; i < allElements.length; i++) {
-    allElements[i].addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      return false;
-    });
-  }
- 
-  document.addEventListener('keydown', function(e) {
-   
-    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-      e.preventDefault();
-    }
-  
-    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-      e.preventDefault();
-    }
- 
-    if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
-      e.preventDefault();
-    }
-   
-    if (e.key === 'F12') {
-      e.preventDefault();
-    }
-   
-    if (e.ctrlKey && e.shiftKey && (e.key === 'u' || e.key === 'U')) {
-      e.preventDefault();
-    }
-  });
+  // Light-weight protection: prevent context menu and drag, but do not add heavy per-node work on load
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
 
   const shoes = [
     { name: "Ultraboost", price: 1500, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
@@ -345,8 +330,10 @@
   const modalPrice = document.getElementById("modal-product-price");
   const modalCats = document.getElementById("modal-product-cats");
   const modalWp = document.getElementById("modal-whatsapp-link");
+  const modalLabs = document.getElementById("modal-labs-link");
 
   function renderCategories(){
+    const frag = document.createDocumentFragment();
     CATS.forEach(cat=>{
       const b=document.createElement("button");
       b.className="cat-btn";
@@ -354,8 +341,9 @@
       b.dataset.cat=cat;
       if(cat==="all")b.classList.add("active");
       b.onclick=()=>filterCategory(cat,b);
-      categoryBar.appendChild(b);
+      frag.appendChild(b);
     })
+    categoryBar.appendChild(frag);
   }
 
   function filterCategory(cat,btn){
@@ -367,10 +355,10 @@
       if(cat==="all")renderGallery(shoes);
       else renderGallery(shoes.filter(s=>s.categories.includes(cat)));
       gallery.style.opacity=1;
-    },300);
+    },180);
   }
 
-  const obsOptions={root:null,rootMargin:"100px",threshold:0.1};
+  const obsOptions={root:null,rootMargin:"150px",threshold:0.05};
   const imgObs=new IntersectionObserver((entries,obs)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -384,8 +372,10 @@
     })
   },obsOptions);
 
+  // Render gallery using a document fragment and then observe images.
   function renderGallery(list){
     gallery.innerHTML="";
+    const frag=document.createDocumentFragment();
     list.forEach((shoe,i)=>{
       const card=document.createElement("article");
       card.className="product-card";
@@ -395,7 +385,8 @@
 
       const img=document.createElement("img");
       img.dataset.src=shoe.image;
-      img.src="https://via.placeholder.com/600x400/000/ffffff?text=Loading...";
+      // lightweight placeholder (small data URI) to reduce initial download compared to an external placeholder
+      img.src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='100%25' height='100%25' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' fill='%23fff' font-family='Arial' font-size='20' dominant-baseline='middle' text-anchor='middle'%3ELoading...%3C/text%3E%3C/svg%3E";
       img.loading="lazy";
       img.alt=shoe.name;
       img.onclick=()=>openModal(i);
@@ -407,16 +398,20 @@
 
       const btn=document.createElement("button");
       btn.className="contact-btn";
-      btn.innerHTML=`<i class="fab fa-whatsapp"></i> Contact`;
+      btn.innerHTML=`<i class=\"fab fa-whatsapp\"></i> Contact`;
       btn.onclick=()=>openModal(i);
 
       card.appendChild(wrap);
       card.appendChild(meta);
       card.appendChild(btn);
 
-      gallery.appendChild(card);
-      imgObs.observe(img);
+      frag.appendChild(card);
     });
+
+    gallery.appendChild(frag);
+
+    // Observe images after they are in the DOM to reduce layout thrash
+    gallery.querySelectorAll('img').forEach(img=>imgObs.observe(img));
   }
 
   function openModal(i){
@@ -425,7 +420,9 @@
     modalName.textContent=s.name;
     modalPrice.textContent="KES "+s.price;
     modalCats.textContent="Categories: "+s.categories.join(", ");
-    modalWp.href="https://wa.me/254717616895?text="+encodeURIComponent(`Hello! I want more info about ${s.name} and similar products priced at KES ${s.price}. and below`);
+    modalWp.href="https://wa.me/254717616895?text="+encodeURIComponent(`Hello! I want more info about ${s.name} and similar products priced at KES ${s.price}.`);
+    // Ensure the labs button opens the requested URL (keeps it static)
+    modalLabs.href = "https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F";
     modal.classList.add("active");
   }
 
@@ -435,33 +432,18 @@
   renderCategories();
   renderGallery(shoes);
 
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('dragstart', (e) => e.preventDefault());
-  });
- 
-  const rightClickObserver = new MutationObserver(() => {
-    document.querySelectorAll('*').forEach(el => {
-      if (!el.hasAttribute('data-rc-protected')) {
-        el.addEventListener('contextmenu', (e) => e.preventDefault());
-        el.setAttribute('data-rc-protected', 'true');
-      }
-    });
-  });
-  rightClickObserver.observe(document.body, { childList: true, subtree: true });
- 
-  const dragObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeName === 'IMG') {
-          node.addEventListener('dragstart', (e) => e.preventDefault());
-        } else if (node.querySelectorAll) {
+  // Minimal protection for images across future DOM changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (node && node.querySelectorAll) {
           node.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', (e) => e.preventDefault()));
         }
       });
     });
   });
-  dragObserver.observe(document.body, { childList: true, subtree: true });
-
+  observer.observe(document.body, { childList: true, subtree: true });
+ 
 })();
 </script>
 </body>
