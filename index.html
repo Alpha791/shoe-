@@ -2,8 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Frigates Stores - Shoe Gallery</title>
+  <title>Frigates Shoe Store Kenya | Affordable Shoes for Men & Women in Nairobi</title>
+  <meta name="description" content="Buy affordable, stylish shoes for men & women in Kenya. Sneakers, boots, heels, official shoes. Delivery in Nairobi. Order via WhatsApp +254717616895">
+  <meta name="keywords" content="shoes Kenya, sneakers Nairobi, shoes Nairobi, affordable shoes Kenya, Frigates shoe store, men's shoes, women's shoes">
+  <meta name="author" content="Frigates Shoe Store">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph for WhatsApp/Google -->
+  <meta property="og:title" content="Frigates Shoe Store Kenya">
+  <meta property="og:description" content="Perfect shoes, every step of the way. Affordable shoes in Nairobi.">
+  <meta property="og:image" content="https://alpha791.github.io/shoe-/images/hero.jpg">
+  <meta property="og:url" content="https://alpha791.github.io/shoe-/">
+  <meta property="og:type" content="website">
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Frigates Shoe Store",
+    "url": "https://alpha791.github.io/shoe-/",
+    "telephone": "+254717616895",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "description": "Affordable stylish shoes for men and women in Kenya"
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -316,7 +343,7 @@
     { name: "Timberland (2)", price: 2000, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" },
     {name: "CAT", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.30 (1).jpeg" },
     {name: "Timberland sport", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.11.jpeg" },
-    {name: "Caterpillar (2)", price: 3200, categories: ["men"], image: "https:///raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.30.jpeg" }
+    {name: "Caterpillar (2)", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.30.jpeg" }
   ];
 
   const CATS = ["all","sneakers","boots","heels","men","women","unisex"];
@@ -386,7 +413,7 @@
       const img=document.createElement("img");
       img.dataset.src=shoe.image;
       // lightweight placeholder (small data URI) to reduce initial download compared to an external placeholder
-      img.src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='100%25' height='100%25' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' fill='%23fff' font-family='Arial' font-size='20' dominant-baseline='middle' text-anchor='middle'%3ELoading...%3C/text%3E%3C/svg%3E";
+      img.src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='100%25' height='100%25' fill='%23000'/%3E%3C/svg%3E";
       img.loading="lazy";
       img.alt=shoe.name;
       img.onclick=()=>openModal(i);
