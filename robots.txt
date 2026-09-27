@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alpha791.github.io/shoe-/sitemap.xml
