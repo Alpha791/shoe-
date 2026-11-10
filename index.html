@@ -296,7 +296,7 @@
 
 <script>
 (function() {
- 
+
   // Light-weight protection: prevent context menu and drag, but do not add heavy per-node work on load
   document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
   document.addEventListener('dragstart', function(e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
@@ -359,6 +359,14 @@
   const modalWp = document.getElementById("modal-whatsapp-link");
   const modalLabs = document.getElementById("modal-labs-link");
 
+  function normalizeImageSrc(src) {
+    if (!src) return src;
+    if (src.startsWith('./') || src.startsWith('/') || src.startsWith('data:')) return src;
+    const rawMatch = src.match(/raw\.githubusercontent\.com\/Alpha791\/shoe-\/main\/images\/(.+)$/i);
+    if (rawMatch) return `images/${decodeURIComponent(rawMatch[1])}`;
+    return src;
+  }
+
   function renderCategories(){
     const frag = document.createDocumentFragment();
     CATS.forEach(cat=>{
@@ -385,7 +393,7 @@
     },180);
   }
 
-  const obsOptions={root:null,rootMargin:"150px",threshold:0.05};
+  const obsOptions={root:null,rootMargin:"250px 0px",threshold:0.01};
   const imgObs=new IntersectionObserver((entries,obs)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -411,10 +419,13 @@
       wrap.className="img-wrap";
 
       const img=document.createElement("img");
-      img.dataset.src=shoe.image;
+      const localImageSrc = normalizeImageSrc(shoe.image);
+      img.dataset.src=localImageSrc;
       // lightweight placeholder (small data URI) to reduce initial download compared to an external placeholder
       img.src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='100%25' height='100%25' fill='%23000'/%3E%3C/svg%3E";
       img.loading="lazy";
+      img.decoding="async";
+      img.fetchPriority="low";
       img.alt=shoe.name;
       img.onclick=()=>openModal(i);
       wrap.appendChild(img);
@@ -425,7 +436,7 @@
 
       const btn=document.createElement("button");
       btn.className="contact-btn";
-      btn.innerHTML=`<i class=\"fab fa-whatsapp\"></i> Contact`;
+      btn.innerHTML=`<i class="fab fa-whatsapp"></i> Contact`;
       btn.onclick=()=>openModal(i);
 
       card.appendChild(wrap);
@@ -443,7 +454,7 @@
 
   function openModal(i){
     const s=shoes[i];
-    modalImg.src=s.image;
+    modalImg.src=normalizeImageSrc(s.image);
     modalName.textContent=s.name;
     modalPrice.textContent="KES "+s.price;
     modalCats.textContent="Categories: "+s.categories.join(", ");
@@ -470,7 +481,7 @@
     });
   });
   observer.observe(document.body, { childList: true, subtree: true });
- 
+
 })();
 </script>
 </body>
