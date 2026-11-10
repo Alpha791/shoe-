@@ -7,481 +7,78 @@
   <meta name="keywords" content="shoes Kenya, sneakers Nairobi, shoes Nairobi, affordable shoes Kenya, Frigates shoe store, men's shoes, women's shoes">
   <meta name="author" content="Frigates Shoe Store">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Open Graph for WhatsApp/Google -->
   <meta property="og:title" content="Frigates Shoe Store Kenya">
   <meta property="og:description" content="Perfect shoes, every step of the way. Affordable shoes in Nairobi.">
   <meta property="og:image" content="https://alpha791.github.io/shoe-/images/hero.jpg">
   <meta property="og:url" content="https://alpha791.github.io/shoe-/">
   <meta property="og:type" content="website">
-
-  <!-- Structured Data (Schema.org) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "Frigates Shoe Store",
-    "url": "https://alpha791.github.io/shoe-/",
-    "telephone": "+254717616895",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Nairobi",
-      "addressCountry": "KE"
-    },
-    "description": "Affordable stylish shoes for men and women in Kenya"
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Google Fonts kept with display=swap to avoid blocking text rendering -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- Load Font Awesome asynchronously (non-render-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-
   <style>
-    :root{
-      --primary:#4CAF50;
-      --bg:#0e0e0e;
-      --card:#141414;
-      --muted:#9aa3a8;
-      --text:#eaeaea;
-      --glass: rgba(255,255,255,0.04);
-      --focus: #ffd54f;
-    }
+    :root{--primary:#4CAF50;--bg:#0e0e0e;--card:#141414;--muted:#9aa3a8;--text:#eaeaea;--glass:rgba(255,255,255,.04)}
     *{box-sizing:border-box;scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui;
-      background:var(--bg);
-      color:var(--text);
-      animation:fadeInPage .6s ease forwards; /* shortened */
-    }
-    @keyframes fadeInPage{
-      from{opacity:0}
-      to{opacity:1}
-    }
-
-    header{
-      background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
-      padding:1.25rem;
-      text-align:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:1rem;
-    }
-
-    #category-bar{
-      display:flex;
-      gap:.5rem;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin:1rem 0;
-      animation:fadeUp .5s ease; /* shortened */
-    }
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(12px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    .cat-btn{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.1);
-      padding:.5rem .75rem;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:600;
-      transition:all .18s ease;
-    }
-    .cat-btn:hover{
-      transform:scale(1.06);
-      background:rgba(255,255,255,0.12);
-    }
-    .cat-btn.active{
-      background:var(--primary);
-      color:#0e0e0e;
-      transform:scale(1.08);
-    }
-
-    #adidas-gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1rem;
-      padding-bottom:3rem;
-      transition:opacity .28s ease;
-    }
-
-    .product-card{
-      background:var(--card);
-      border-radius:12px;
-      padding:12px;
-      min-height:320px;
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      transition:all .22s ease;
-      opacity:0;
-      transform:translateY(18px);
-      animation:fadePop .5s ease forwards; /* shortened */
-    }
-
-    @keyframes fadePop{
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    .product-card:hover{
-      transform:translateY(-6px) scale(1.02);
-      box-shadow:0 12px 28px rgba(0,0,0,.55);
-    }
-
-    .img-wrap{
-      width:100%;
-      height:200px;
-      overflow:hidden;
-      border-radius:12px;
-      position:relative;
-    }
-
-    .img-wrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:transform .4s ease,filter .45s ease,opacity .45s ease;
-      filter:blur(10px);
-      opacity:0;
-    }
-    .img-wrap img.loaded{ filter:blur(0); opacity:1; }
-    .img-wrap:hover img{ transform:scale(1.12); }
-
-    .meta{text-align:center;margin-top:.5rem}
-    .meta h4{margin:0;font-size:1rem}
-    .meta p{margin:0;color:var(--muted)}
-
-    .contact-btn{
-      background:var(--primary);
-      padding:.56rem .9rem;
-      border-radius:50px;
-      font-weight:700;
-      cursor:pointer;
-      border:none;
-      display:flex;
-      align-items:center;
-      gap:.5rem;
-      margin:10px auto 0;
-      transition:all .18s ease;
-    }
-    .contact-btn:hover{
-      transform:scale(1.05);
-      box-shadow:0 6px 18px rgba(0,0,0,.4);
-    }
-
-    .lab-btn{
-      background:transparent;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,0.12);
-      padding:.45rem .75rem;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:600;
-      text-decoration:none;
-      transition:all .18s ease;
-    }
-    .lab-btn:hover{ background:rgba(255,255,255,0.06); }
-
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      justify-content:center;
-      align-items:center;
-      background:rgba(0,0,0,.6);
-      z-index:999;
-    }
-
-    .modal.active{
-      display:flex;
-      animation:zoomIn .3s ease;
-    }
-
-    @keyframes zoomIn{
-      from{opacity:0;transform:scale(.6)}
-      to{opacity:1;transform:scale(1)}
-    }
-
-    .modal-content{
-      background:var(--glass);
-      padding:1rem;
-      border-radius:12px;
-      color:var(--text);
-      max-width:500px;
-      width:95%;
-      text-align:center;
-    }
-
-    #floating-whatsapp{
-      position:fixed;
-      right:20px;
-      bottom:20px;
-      width:62px;
-      height:62px;
-      border-radius:50%;
-      background:#25D366;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      color:white;
-      animation:floatPulse 2.5s infinite ease-in-out;
-    }
-
-    @keyframes floatPulse{
-      0%{transform:translateY(0) scale(1)}
-      50%{transform:translateY(-6px) scale(1.07)}
-      100%{transform:translateY(0) scale(1)}
-    }
-
-    img {
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: auto;
-    }
-    body {
-      overscroll-behavior-y: contain;
-    }
+    body{margin:0;font-family:'Poppins',system-ui;background:var(--bg);color:var(--text);animation:fadeInPage .6s ease forwards;overscroll-behavior-y:contain}
+    @keyframes fadeInPage{from{opacity:0}to{opacity:1}}
+    header{background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);padding:1.25rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:1rem}
+    #category-bar{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:1rem 0;animation:fadeUp .5s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .cat-btn{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.1);padding:.5rem .75rem;border-radius:999px;cursor:pointer;font-weight:600;transition:all .18s ease}
+    .cat-btn:hover{transform:scale(1.06);background:rgba(255,255,255,.12)}
+    .cat-btn.active{background:var(--primary);color:#0e0e0e;transform:scale(1.08)}
+    #adidas-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding-bottom:3rem;transition:opacity .28s ease}
+    .product-card{background:var(--card);border-radius:12px;padding:12px;min-height:320px;display:flex;flex-direction:column;align-items:stretch;transition:all .22s ease;opacity:0;transform:translateY(18px);animation:fadePop .5s ease forwards}
+    @keyframes fadePop{to{opacity:1;transform:translateY(0)}}
+    .product-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 28px rgba(0,0,0,.55)}
+    .img-wrap{width:100%;height:200px;overflow:hidden;border-radius:12px;position:relative;background:#000}
+    .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease,filter .45s ease,opacity .45s ease;filter:blur(10px);opacity:0}
+    .img-wrap img.loaded{filter:blur(0);opacity:1}.img-wrap:hover img{transform:scale(1.12)}
+    .meta{text-align:center;margin-top:.5rem}.meta h4{margin:0;font-size:1rem}.meta p{margin:0;color:var(--muted)}
+    .contact-btn{background:var(--primary);color:#111;padding:.56rem .9rem;border-radius:50px;font-weight:700;cursor:pointer;border:none;display:flex;align-items:center;gap:.5rem;margin:10px auto 0;transition:all .18s ease;text-decoration:none}
+    .contact-btn:hover{transform:scale(1.05);box-shadow:0 6px 18px rgba(0,0,0,.4)}
+    .lab-btn{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12);padding:.45rem .75rem;border-radius:8px;cursor:pointer;font-weight:600;text-decoration:none;transition:all .18s ease}
+    .lab-btn:hover{background:rgba(255,255,255,.06)}
+    .modal{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,.6);z-index:999}
+    .modal.active{display:flex;animation:zoomIn .3s ease}@keyframes zoomIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+    .modal-content{background:#202020;padding:1rem;border-radius:12px;color:var(--text);max-width:500px;width:95%;text-align:center}
+    #modal-image{max-width:100%;max-height:60vh;object-fit:contain;border-radius:8px}
+    #floating-whatsapp{position:fixed;right:20px;bottom:20px;width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;animation:floatPulse 2.5s infinite ease-in-out;z-index:10}
+    @keyframes floatPulse{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.07)}}
+    img{user-select:none;-webkit-user-drag:none}
+    @media(max-width:640px){#adidas-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}.product-card{padding:8px;min-height:280px}.img-wrap{height:150px}}
+    @media(max-width:360px){#adidas-gallery{grid-template-columns:1fr}.img-wrap{height:200px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
   </style>
 </head>
-
 <body>
-
 <header>
-  <div style="display:flex;align-items:center;gap:1rem;">
-    <img src="images/frigates.png" alt="Frigates Stores Logo" style="width:72px;height:auto;margin-bottom:0;">
-    <div style="text-align:left">
-      <h1 style="margin:0">Frigates Stores</h1>
-      <p style="margin:0;font-size:.9rem;color:var(--muted);">Your One-Stop Shoe Gallery</p>
-    </div>
-  </div>
-  <!-- Visit Labs button: opens the requested external URL in a new tab -->
-  <a class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F" target="_blank" rel="noopener noreferrer" style="margin-left:auto;">Visit Labs</a>
+  <div style="display:flex;align-items:center;gap:1rem"><img src="images/frigates.png" alt="Frigates Stores Logo" style="width:72px;height:auto"><div style="text-align:left"><h1 style="margin:0">Frigates Stores</h1><p style="margin:0;font-size:.9rem;color:var(--muted)">Your One-Stop Shoe Gallery</p></div></div>
+  <a class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F" target="_blank" rel="noopener noreferrer" style="margin-left:auto">Visit Labs</a>
 </header>
-
-
-<div class="container">
-  <div id="category-bar"></div>
-  <main id="adidas-gallery"></main>
-</div>
-
-<div id="productModal" class="modal">
-  <div class="modal-content">
-    <button id="modalClose" style="background:none;border:none;font-size:1.5rem;color:white;float:right;cursor:pointer">&times;</button>
-    <img id="modal-image" style="max-width:100%;border-radius:8px">
-    <h2 id="modal-product-name"></h2>
-    <p id="modal-product-price"></p>
-    <p id="modal-product-cats" style="color:#aaa"></p>
-    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.5rem">
-      <a id="modal-whatsapp-link" target="_blank" class="contact-btn" style="text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
-      <!-- Extra button to open the Labs URL directly from product modal -->
-      <a id="modal-labs-link" target="_blank" class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F">Open Labs</a>
-    </div>
-  </div>
-</div>
-
-<a id="floating-whatsapp" href="https://wa.me/254717616895?text=Hello%20Frigates%20Stores">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
+<div class="container"><div id="category-bar"></div><main id="adidas-gallery"></main></div>
+<div id="productModal" class="modal"><div class="modal-content"><button id="modalClose" aria-label="Close" style="background:none;border:none;font-size:1.5rem;color:white;float:right;cursor:pointer">&times;</button><img id="modal-image" alt=""><h2 id="modal-product-name"></h2><p id="modal-product-price"></p><p id="modal-product-cats" style="color:#aaa"></p><div style="display:flex;gap:.5rem;justify-content:center;margin-top:.5rem"><a id="modal-whatsapp-link" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us</a><a id="modal-labs-link" target="_blank" rel="noopener noreferrer" class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F">Open Labs</a></div></div></div>
+<a id="floating-whatsapp" aria-label="Contact us on WhatsApp" href="https://wa.me/254717616895?text=Hello%20Frigates%20Stores"><i class="fab fa-whatsapp"></i></a>
 <script>
-(function() {
-
-  // Light-weight protection: prevent context menu and drag, but do not add heavy per-node work on load
-  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-  document.addEventListener('dragstart', function(e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
-
-  const shoes = [
-    { name: "Ultraboost", price: 1500, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tkjbiike.png" },
-    { name: "Superstar", price: 1800, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/z8e0k6ya.png" },
-    { name: "NMD R1", price: 1600, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/svne0h29.png" },
-    { name: "Yeezy Boost 350", price: 2500, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/idyek3hj.png" },
-    { name: "Glanzzy", price: 2650, categories: ["women","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/w1fmn3jn.png" },
-    { name: "Sneaker Desktop", price: 2800, categories: ["sneakers","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/3u87ofx1.png" },
-    { name: "Nike", price: 3000, categories: ["men","sneakers"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Nike.jpeg" },
-    { name: "Airborne", price: 2200, categories: ["men","boots"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/OIP.jpeg" },
-    { name: "New Balance", price: 2500, categories: ["men","sneakers"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/new%20balance.jpeg" },
-    { name: "Dream", price: 3000, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Dream%20.jpeg" },
-    { name: "Thor", price: 2200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/th.jpeg" },
-    { name: "Geers", price: 2800, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/geers.jpeg" },
-    { name: "Entering Elegance", price: 2500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/x2jvl3mv.png" },
-    { name: "Heels", price: 2600, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/2kx8romb.png" },
-    { name: "Heel", price: 2200, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/tpuer7of.png" },
-    { name: "Alexedra", price: 2400, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-alexandra-maria-58259-336372.jpg" },
-    { name: "Martins", price: 2600, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-godisable-jacob-226636-1501210.jpg" },
-    { name: "Lee", price: 1700, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-leeimage7-31884277.jpg" },
-    { name: "Toronto", price: 2300, categories: ["women","heels"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/pexels-letssnacktoronto-1630344.jpg" },
-    { name: "ItalianB&B", price: 2500, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItalianB&B.jpeg" },
-    { name: "mamba", price: 2500, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mamba.jpeg" },
-    { name: "M158", price: 3000, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ItaliamM156.jpeg" },
-    { name: "Modern Men", price: 3500, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/Opi1.jpeg" },
-    { name: "GrandX9", price: 3800, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/grand9.jpeg" },
-    { name: "Thai", price: 3000, categories: ["unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/asia.jpeg" },
-    { name: "Crown!", price: 3500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/4fe5507dc3f69d6fe012e552de719c6d.jpg" },
-    { name: "Mules Heels", price: 1500, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/81Oakz0KYCL.jpg" },
-    { name: "Paris", price: 2000, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/best-shoe-brands-for-women-lou.jpg" },
-    { name: "Gradiator heels", price: 2000, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/gradiaror.jpeg" },
-    { name: "Paris Heels", price: 2500, categories: ["heels","women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/paris.jpeg" },
-    { name: "Valentino", price: 2500, categories: ["women","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/valentino.jpeg" },
-    { name: "Ballerina flats", price: 1500, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/barelllina.jpeg" },
-    { name: "Mules", price: 1200, categories: ["women"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/mules.jpeg" },
-    { name: "Solomon", price: 3500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/robin-benzrihem-8iZvOp39rzw-unsplash.jpg" },
-    { name: "Terrex", price: 4000, categories: ["boots","men","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/patrik-laszlo-qvEeYO50deY-unsplash.jpg" },
-    { name: "Columbia", price: 5000, categories: ["boots","unisex"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/clay-banks-nj0a29qb_jo-unsplash.jpg" },
-    { name: "Dukathron", price: 4500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/ana-azuria-gRTFpyLbIO4-unsplash.jpg" },
-    { name: "Timberland", price: 3500, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/chris-knight-VytE4-Bt4Ds-unsplash.jpg" },
-    { name: "Timberland (2)", price: 2000, categories: ["boots","men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/siora-photography-B1Sn_ADEohs-unsplash.jpg" },
-    {name: "CAT", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.30 (1).jpeg" },
-    {name: "Timberland sport", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.11.jpeg" },
-    {name: "Caterpillar (2)", price: 3200, categories: ["men"], image: "https://raw.githubusercontent.com/Alpha791/shoe-/main/images/WhatsApp Image 2026-03-12 at 10.17.30.jpeg" }
-  ];
-
-  const CATS = ["all","sneakers","boots","heels","men","women","unisex"];
-
-  const categoryBar = document.getElementById("category-bar");
-  const gallery = document.getElementById("adidas-gallery");
-  const modal = document.getElementById("productModal");
-  const modalClose = document.getElementById("modalClose");
-  const modalImg = document.getElementById("modal-image");
-  const modalName = document.getElementById("modal-product-name");
-  const modalPrice = document.getElementById("modal-product-price");
-  const modalCats = document.getElementById("modal-product-cats");
-  const modalWp = document.getElementById("modal-whatsapp-link");
-  const modalLabs = document.getElementById("modal-labs-link");
-
-  function normalizeImageSrc(src) {
-    if (!src) return src;
-    if (src.startsWith('./') || src.startsWith('/') || src.startsWith('data:')) return src;
-    const rawMatch = src.match(/raw\.githubusercontent\.com\/Alpha791\/shoe-\/main\/images\/(.+)$/i);
-    if (rawMatch) return `images/${decodeURIComponent(rawMatch[1])}`;
-    return src;
-  }
-
-  function renderCategories(){
-    const frag = document.createDocumentFragment();
-    CATS.forEach(cat=>{
-      const b=document.createElement("button");
-      b.className="cat-btn";
-      b.textContent=cat.toUpperCase();
-      b.dataset.cat=cat;
-      if(cat==="all")b.classList.add("active");
-      b.onclick=()=>filterCategory(cat,b);
-      frag.appendChild(b);
-    })
-    categoryBar.appendChild(frag);
-  }
-
-  function filterCategory(cat,btn){
-    document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    gallery.style.opacity=0;
-
-    setTimeout(()=>{
-      if(cat==="all")renderGallery(shoes);
-      else renderGallery(shoes.filter(s=>s.categories.includes(cat)));
-      gallery.style.opacity=1;
-    },180);
-  }
-
-  const obsOptions={root:null,rootMargin:"250px 0px",threshold:0.01};
-  const imgObs=new IntersectionObserver((entries,obs)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const img=e.target;
-        if (img.dataset.src) {
-          img.src=img.dataset.src;
-          img.onload=()=>img.classList.add("loaded");
-        }
-        obs.unobserve(img);
-      }
-    })
-  },obsOptions);
-
-  // Render gallery using a document fragment and then observe images.
-  function renderGallery(list){
-    gallery.innerHTML="";
-    const frag=document.createDocumentFragment();
-    list.forEach((shoe,i)=>{
-      const card=document.createElement("article");
-      card.className="product-card";
-
-      const wrap=document.createElement("div");
-      wrap.className="img-wrap";
-
-      const img=document.createElement("img");
-      const localImageSrc = normalizeImageSrc(shoe.image);
-      img.dataset.src=localImageSrc;
-      // lightweight placeholder (small data URI) to reduce initial download compared to an external placeholder
-      img.src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='100%25' height='100%25' fill='%23000'/%3E%3C/svg%3E";
-      img.loading="lazy";
-      img.decoding="async";
-      img.fetchPriority="low";
-      img.alt=shoe.name;
-      img.onclick=()=>openModal(i);
-      wrap.appendChild(img);
-
-      const meta=document.createElement("div");
-      meta.className="meta";
-      meta.innerHTML=`<h4>${shoe.name}</h4><p>KES ${shoe.price}</p>`;
-
-      const btn=document.createElement("button");
-      btn.className="contact-btn";
-      btn.innerHTML=`<i class="fab fa-whatsapp"></i> Contact`;
-      btn.onclick=()=>openModal(i);
-
-      card.appendChild(wrap);
-      card.appendChild(meta);
-      card.appendChild(btn);
-
-      frag.appendChild(card);
-    });
-
-    gallery.appendChild(frag);
-
-    // Observe images after they are in the DOM to reduce layout thrash
-    gallery.querySelectorAll('img').forEach(img=>imgObs.observe(img));
-  }
-
-  function openModal(i){
-    const s=shoes[i];
-    modalImg.src=normalizeImageSrc(s.image);
-    modalName.textContent=s.name;
-    modalPrice.textContent="KES "+s.price;
-    modalCats.textContent="Categories: "+s.categories.join(", ");
-    modalWp.href="https://wa.me/254717616895?text="+encodeURIComponent(`Hello! I want more info about ${s.name} and similar products priced at KES ${s.price}.`);
-    // Ensure the labs button opens the requested URL (keeps it static)
-    modalLabs.href = "https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F";
-    modal.classList.add("active");
-  }
-
-  modalClose.onclick=()=>modal.classList.remove("active");
-  modal.onclick=e=>{ if(e.target===modal) modal.classList.remove("active") };
-
-  renderCategories();
-  renderGallery(shoes);
-
-  // Minimal protection for images across future DOM changes
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(m => {
-      m.addedNodes.forEach(node => {
-        if (node && node.querySelectorAll) {
-          node.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', (e) => e.preventDefault()));
-        }
-      });
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-
+(function(){
+  document.addEventListener('contextmenu',e=>e.preventDefault());
+  document.addEventListener('dragstart',e=>{if(e.target&&e.target.tagName==='IMG')e.preventDefault()});
+  const imageBase='images/';
+  const products=[
+    ['Ultraboost',1500,['sneakers','unisex'],'tkjbiike.png'],['Superstar',1800,['sneakers','unisex'],'z8e0k6ya.png'],['NMD R1',1600,['sneakers','unisex'],'svne0h29.png'],['Yeezy Boost 350',2500,['sneakers','unisex'],'idyek3hj.png'],['Glanzzy',2650,['women','unisex'],'w1fmn3jn.png'],['Sneaker Desktop',2800,['sneakers','unisex'],'3u87ofx1.png'],['Nike',3000,['men','sneakers'],'Nike.jpeg'],['Airborne',2200,['men','boots'],'OIP.jpeg'],['New Balance',2500,['men','sneakers'],'new balance.jpeg'],['Dream',3000,['women'],'Dream .jpeg'],['Thor',2200,['men'],'th.jpeg'],['Geers',2800,['men'],'geers.jpeg'],['Entering Elegance',2500,['women'],'x2jvl3mv.png'],['Heels',2600,['heels','women'],'2kx8romb.png'],['Heel',2200,['heels','women'],'tpuer7of.png'],['Alexedra',2400,['women'],'pexels-alexandra-maria-58259-336372.jpg'],['Martins',2600,['women'],'pexels-godisable-jacob-226636-1501210.jpg'],['Lee',1700,['heels','women'],'pexels-leeimage7-31884277.jpg'],['Toronto',2300,['women','heels'],'pexels-letssnacktoronto-1630344.jpg'],['ItalianB&B',2500,['men'],'ItalianB&B.jpeg'],['mamba',2500,['men'],'mamba.jpeg'],['M158',3000,['men'],'ItaliamM156.jpeg'],['Modern Men',3500,['men'],'Opi1.jpeg'],['GrandX9',3800,['men'],'grand9.jpeg'],['Thai',3000,['unisex'],'asia.jpeg'],['Crown!',3500,['women'],'4fe5507dc3f69d6fe012e552de719c6d.jpg'],['Mules Heels',1500,['heels','women'],'81Oakz0KYCL.jpg'],['Paris',2000,['women'],'best-shoe-brands-for-women-lou.jpg'],['Gradiator heels',2000,['heels','women'],'gradiaror.jpeg'],['Paris Heels',2500,['heels','women'],'paris.jpeg'],['Valentino',2500,['women','unisex'],'valentino.jpeg'],['Ballerina flats',1500,['women'],'barelllina.jpeg'],['Mules',1200,['women'],'mules.jpeg'],['Solomon',3500,['boots','men'],'robin-benzrihem-8iZvOp39rzw-unsplash.jpg'],['Terrex',4000,['boots','men','unisex'],'patrik-laszlo-qvEeYO50deY-unsplash.jpg'],['Columbia',5000,['boots','unisex'],'clay-banks-nj0a29qb_jo-unsplash.jpg'],['Dukathron',4500,['boots','men'],'ana-azuria-gRTFpyLbIO4-unsplash.jpg'],['Timberland',3500,['boots','men'],'chris-knight-VytE4-Bt4Ds-unsplash.jpg'],['Timberland (2)',2000,['boots','men'],'siora-photography-B1Sn_ADEohs-unsplash.jpg'],['CAT',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.30 (1).jpeg'],['Timberland sport',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.11.jpeg'],['Caterpillar (2)',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.30.jpeg']
+  ].map(([name,price,categories,file])=>({name,price,categories,image:imageBase+encodeURIComponent(file).replace(/%2F/g,'/')}));
+  const categories=['all','sneakers','boots','heels','men','women','unisex'];
+  const categoryBar=document.getElementById('category-bar'),gallery=document.getElementById('adidas-gallery');
+  const modal=document.getElementById('productModal'),modalImg=document.getElementById('modal-image');
+  const modalName=document.getElementById('modal-product-name'),modalPrice=document.getElementById('modal-product-price'),modalCats=document.getElementById('modal-product-cats');
+  const modalWp=document.getElementById('modal-whatsapp-link');
+  function openModal(product){modalImg.src=product.image;modalImg.alt=product.name;modalName.textContent=product.name;modalPrice.textContent='KES '+product.price;modalCats.textContent='Categories: '+product.categories.join(', ');modalWp.href='https://wa.me/254717616895?text='+encodeURIComponent(`Hello! I want more info about ${product.name} and similar products priced at KES ${product.price}.`);modal.classList.add('active')}
+  function renderGallery(list){gallery.replaceChildren();const fragment=document.createDocumentFragment();list.forEach(product=>{const card=document.createElement('article');card.className='product-card';const wrap=document.createElement('div');wrap.className='img-wrap';const img=document.createElement('img');img.dataset.src=product.image;img.alt=product.name;img.loading='lazy';img.decoding='async';img.fetchPriority='low';img.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='2' fill='%23000'/%3E%3C/svg%3E";img.addEventListener('click',()=>openModal(product));wrap.appendChild(img);const meta=document.createElement('div');meta.className='meta';const title=document.createElement('h4');title.textContent=product.name;const price=document.createElement('p');price.textContent='KES '+product.price;meta.append(title,price);const button=document.createElement('button');button.className='contact-btn';button.innerHTML='<i class="fab fa-whatsapp"></i> Contact';button.addEventListener('click',()=>openModal(product));card.append(wrap,meta,button);fragment.appendChild(card)});gallery.appendChild(fragment);gallery.querySelectorAll('img').forEach(img=>imageObserver.observe(img))}
+  const imageObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const img=entry.target;img.src=img.dataset.src;img.onload=()=>img.classList.add('loaded');img.onerror=()=>{img.alt+=' (image unavailable)';img.classList.add('loaded')};observer.unobserve(img)})},{rootMargin:'250px 0px',threshold:.01});
+  categories.forEach(category=>{const button=document.createElement('button');button.className='cat-btn'+(category==='all'?' active':'');button.textContent=category.toUpperCase();button.addEventListener('click',()=>{document.querySelectorAll('.cat-btn').forEach(item=>item.classList.remove('active'));button.classList.add('active');gallery.style.opacity='0';setTimeout(()=>{renderGallery(category==='all'?products:products.filter(item=>item.categories.includes(category)));gallery.style.opacity='1'},180)});categoryBar.appendChild(button)});
+  document.getElementById('modalClose').addEventListener('click',()=>modal.classList.remove('active'));modal.addEventListener('click',event=>{if(event.target===modal)modal.classList.remove('active')});
+  renderGallery(products);
 })();
 </script>
 </body>
