@@ -47,6 +47,10 @@ Never commit credentials, payment secrets, access tokens or private customer inf
 ## Deployment
 The GitHub Actions workflow validates required files and deploys the site when changes are pushed to `main`. In GitHub, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Pull requests run validation without deploying.
 
+## Customer rights and privacy
+
+Customers can open the [Customer Rights & Privacy Notice](https://alpha791.github.io/shoe-/legal.html) from the storefront footer. It explains browser cart storage, WhatsApp handoff, hosting, customer privacy rights, store ordering terms, and copyright information. This notice is general customer information, not legal advice.
+
 ## Support
 WhatsApp: [+254 717 616 895](https://wa.me/254717616895)
 
