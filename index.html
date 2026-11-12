@@ -1,85 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Frigates Shoe Store Kenya | Affordable Shoes for Men & Women in Nairobi</title>
-  <meta name="description" content="Buy affordable, stylish shoes for men & women in Kenya. Sneakers, boots, heels, official shoes. Delivery in Nairobi. Order via WhatsApp +254717616895">
-  <meta name="keywords" content="shoes Kenya, sneakers Nairobi, shoes Nairobi, affordable shoes Kenya, Frigates shoe store, men's shoes, women's shoes">
-  <meta name="author" content="Frigates Shoe Store">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Frigates Shoe Store Kenya">
-  <meta property="og:description" content="Perfect shoes, every step of the way. Affordable shoes in Nairobi.">
-  <meta property="og:image" content="https://alpha791.github.io/shoe-/images/hero.jpg">
-  <meta property="og:url" content="https://alpha791.github.io/shoe-/">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-  <style>
-    :root{--primary:#4CAF50;--bg:#0e0e0e;--card:#141414;--muted:#9aa3a8;--text:#eaeaea;--glass:rgba(255,255,255,.04)}
-    *{box-sizing:border-box;scroll-behavior:smooth}
-    body{margin:0;font-family:'Poppins',system-ui;background:var(--bg);color:var(--text);animation:fadeInPage .6s ease forwards;overscroll-behavior-y:contain}
-    @keyframes fadeInPage{from{opacity:0}to{opacity:1}}
-    header{background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);padding:1.25rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:1rem}
-    #category-bar{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:1rem 0;animation:fadeUp .5s ease}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .cat-btn{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.1);padding:.5rem .75rem;border-radius:999px;cursor:pointer;font-weight:600;transition:all .18s ease}
-    .cat-btn:hover{transform:scale(1.06);background:rgba(255,255,255,.12)}
-    .cat-btn.active{background:var(--primary);color:#0e0e0e;transform:scale(1.08)}
-    #adidas-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding-bottom:3rem;transition:opacity .28s ease}
-    .product-card{background:var(--card);border-radius:12px;padding:12px;min-height:320px;display:flex;flex-direction:column;align-items:stretch;transition:all .22s ease;opacity:0;transform:translateY(18px);animation:fadePop .5s ease forwards}
-    @keyframes fadePop{to{opacity:1;transform:translateY(0)}}
-    .product-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 28px rgba(0,0,0,.55)}
-    .img-wrap{width:100%;height:200px;overflow:hidden;border-radius:12px;position:relative;background:#000}
-    .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease,filter .45s ease,opacity .45s ease;filter:blur(10px);opacity:0}
-    .img-wrap img.loaded{filter:blur(0);opacity:1}.img-wrap:hover img{transform:scale(1.12)}
-    .meta{text-align:center;margin-top:.5rem}.meta h4{margin:0;font-size:1rem}.meta p{margin:0;color:var(--muted)}
-    .contact-btn{background:var(--primary);color:#111;padding:.56rem .9rem;border-radius:50px;font-weight:700;cursor:pointer;border:none;display:flex;align-items:center;gap:.5rem;margin:10px auto 0;transition:all .18s ease;text-decoration:none}
-    .contact-btn:hover{transform:scale(1.05);box-shadow:0 6px 18px rgba(0,0,0,.4)}
-    .lab-btn{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12);padding:.45rem .75rem;border-radius:8px;cursor:pointer;font-weight:600;text-decoration:none;transition:all .18s ease}
-    .lab-btn:hover{background:rgba(255,255,255,.06)}
-    .modal{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,.6);z-index:999}
-    .modal.active{display:flex;animation:zoomIn .3s ease}@keyframes zoomIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
-    .modal-content{background:#202020;padding:1rem;border-radius:12px;color:var(--text);max-width:500px;width:95%;text-align:center}
-    #modal-image{max-width:100%;max-height:60vh;object-fit:contain;border-radius:8px}
-    #floating-whatsapp{position:fixed;right:20px;bottom:20px;width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;animation:floatPulse 2.5s infinite ease-in-out;z-index:10}
-    @keyframes floatPulse{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.07)}}
-    img{user-select:none;-webkit-user-drag:none}
-    @media(max-width:640px){#adidas-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}.product-card{padding:5px;min-height:240px}.img-wrap{height:100px}.meta h4{font-size:.75rem}.meta p{font-size:.7rem}.contact-btn{font-size:.7rem;padding:.4rem .45rem}}
-    @media(max-width:360px){#adidas-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.product-card{padding:3px;min-height:220px}.img-wrap{height:80px}.meta h4{font-size:.68rem}.meta p,.contact-btn{font-size:.65rem}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-  </style>
-</head>
-<body>
-<header>
-  <div style="display:flex;align-items:center;gap:1rem"><img src="images/frigates.png" alt="Frigates Stores Logo" style="width:72px;height:auto"><div style="text-align:left"><h1 style="margin:0">Frigates Stores</h1><p style="margin:0;font-size:.9rem;color:var(--muted)">Your One-Stop Shoe Gallery</p></div></div>
-  <a class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F" target="_blank" rel="noopener noreferrer" style="margin-left:auto">Visit Labs</a>
-</header>
-<div class="container"><div id="category-bar"></div><main id="adidas-gallery"></main></div>
-<div id="productModal" class="modal"><div class="modal-content"><button id="modalClose" aria-label="Close" style="background:none;border:none;font-size:1.5rem;color:white;float:right;cursor:pointer">&times;</button><img id="modal-image" alt=""><h2 id="modal-product-name"></h2><p id="modal-product-price"></p><p id="modal-product-cats" style="color:#aaa"></p><div style="display:flex;gap:.5rem;justify-content:center;margin-top:.5rem"><a id="modal-whatsapp-link" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us</a><a id="modal-labs-link" target="_blank" rel="noopener noreferrer" class="lab-btn" href="https://labs.google.com/pomelli/website/8d42Q0UYjoP2kYpK-KQ_8F">Open Labs</a></div></div></div>
-<a id="floating-whatsapp" aria-label="Contact us on WhatsApp" href="https://wa.me/254717616895?text=Hello%20Frigates%20Stores"><i class="fab fa-whatsapp"></i></a>
-<script>
-(function(){
-  document.addEventListener('contextmenu',e=>e.preventDefault());
-  document.addEventListener('dragstart',e=>{if(e.target&&e.target.tagName==='IMG')e.preventDefault()});
-  const imageBase='images/';
-  const products=[
-    ['Ultraboost',1500,['sneakers','unisex'],'tkjbiike.png'],['Superstar',1800,['sneakers','unisex'],'z8e0k6ya.png'],['NMD R1',1600,['sneakers','unisex'],'svne0h29.png'],['Yeezy Boost 350',2500,['sneakers','unisex'],'idyek3hj.png'],['Glanzzy',2650,['women','unisex'],'w1fmn3jn.png'],['Sneaker Desktop',2800,['sneakers','unisex'],'3u87ofx1.png'],['Nike',3000,['men','sneakers'],'Nike.jpeg'],['Airborne',2200,['men','boots'],'OIP.jpeg'],['New Balance',2500,['men','sneakers'],'new balance.jpeg'],['Dream',3000,['women'],'Dream .jpeg'],['Thor',2200,['men'],'th.jpeg'],['Geers',2800,['men'],'geers.jpeg'],['Entering Elegance',2500,['women'],'x2jvl3mv.png'],['Heels',2600,['heels','women'],'2kx8romb.png'],['Heel',2200,['heels','women'],'tpuer7of.png'],['Alexedra',2400,['women'],'pexels-alexandra-maria-58259-336372.jpg'],['Martins',2600,['women'],'pexels-godisable-jacob-226636-1501210.jpg'],['Lee',1700,['heels','women'],'pexels-leeimage7-31884277.jpg'],['Toronto',2300,['women','heels'],'pexels-letssnacktoronto-1630344.jpg'],['ItalianB&B',2500,['men'],'ItalianB&B.jpeg'],['mamba',2500,['men'],'mamba.jpeg'],['M158',3000,['men'],'ItaliamM156.jpeg'],['Modern Men',3500,['men'],'Opi1.jpeg'],['GrandX9',3800,['men'],'grand9.jpeg'],['Thai',3000,['unisex'],'asia.jpeg'],['Crown!',3500,['women'],'4fe5507dc3f69d6fe012e552de719c6d.jpg'],['Mules Heels',1500,['heels','women'],'81Oakz0KYCL.jpg'],['Paris',2000,['women'],'best-shoe-brands-for-women-lou.jpg'],['Gradiator heels',2000,['heels','women'],'gradiaror.jpeg'],['Paris Heels',2500,['heels','women'],'paris.jpeg'],['Valentino',2500,['women','unisex'],'valentino.jpeg'],['Ballerina flats',1500,['women'],'barelllina.jpeg'],['Mules',1200,['women'],'mules.jpeg'],['Solomon',3500,['boots','men'],'robin-benzrihem-8iZvOp39rzw-unsplash.jpg'],['Terrex',4000,['boots','men','unisex'],'patrik-laszlo-qvEeYO50deY-unsplash.jpg'],['Columbia',5000,['boots','unisex'],'clay-banks-nj0a29qb_jo-unsplash.jpg'],['Dukathron',4500,['boots','men'],'ana-azuria-gRTFpyLbIO4-unsplash.jpg'],['Timberland',3500,['boots','men'],'chris-knight-VytE4-Bt4Ds-unsplash.jpg'],['Timberland (2)',2000,['boots','men'],'siora-photography-B1Sn_ADEohs-unsplash.jpg'],['CAT',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.30 (1).jpeg'],['Timberland sport',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.11.jpeg'],['Caterpillar (2)',3200,['men'],'WhatsApp Image 2026-03-12 at 10.17.30.jpeg']
-  ].map(([name,price,categories,file])=>({name,price,categories,image:imageBase+encodeURIComponent(file).replace(/%2F/g,'/')}));
-  const categories=['all','sneakers','boots','heels','men','women','unisex'];
-  const categoryBar=document.getElementById('category-bar'),gallery=document.getElementById('adidas-gallery');
-  const modal=document.getElementById('productModal'),modalImg=document.getElementById('modal-image');
-  const modalName=document.getElementById('modal-product-name'),modalPrice=document.getElementById('modal-product-price'),modalCats=document.getElementById('modal-product-cats');
-  const modalWp=document.getElementById('modal-whatsapp-link');
-  function openModal(product){modalImg.src=product.image;modalImg.alt=product.name;modalName.textContent=product.name;modalPrice.textContent='KES '+product.price;modalCats.textContent='Categories: '+product.categories.join(', ');modalWp.href='https://wa.me/254717616895?text='+encodeURIComponent(`Hello! I want more info about ${product.name} and similar products priced at KES ${product.price}.`);modal.classList.add('active')}
-  function renderGallery(list){gallery.replaceChildren();const fragment=document.createDocumentFragment();list.forEach(product=>{const card=document.createElement('article');card.className='product-card';const wrap=document.createElement('div');wrap.className='img-wrap';const img=document.createElement('img');img.dataset.src=product.image;img.alt=product.name;img.loading='lazy';img.decoding='async';img.fetchPriority='low';img.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='2' fill='%23000'/%3E%3C/svg%3E";img.addEventListener('click',()=>openModal(product));wrap.appendChild(img);const meta=document.createElement('div');meta.className='meta';const title=document.createElement('h4');title.textContent=product.name;const price=document.createElement('p');price.textContent='KES '+product.price;meta.append(title,price);const button=document.createElement('button');button.className='contact-btn';button.innerHTML='<i class="fab fa-whatsapp"></i> Contact';button.addEventListener('click',()=>openModal(product));card.append(wrap,meta,button);fragment.appendChild(card)});gallery.appendChild(fragment);gallery.querySelectorAll('img').forEach(img=>imageObserver.observe(img))}
-  const imageObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const img=entry.target;img.src=img.dataset.src;img.onload=()=>img.classList.add('loaded');img.onerror=()=>{img.alt+=' (image unavailable)';img.classList.add('loaded')};observer.unobserve(img)})},{rootMargin:'250px 0px',threshold:.01});
-  categories.forEach(category=>{const button=document.createElement('button');button.className='cat-btn'+(category==='all'?' active':'');button.textContent=category.toUpperCase();button.addEventListener('click',()=>{document.querySelectorAll('.cat-btn').forEach(item=>item.classList.remove('active'));button.classList.add('active');gallery.style.opacity='0';setTimeout(()=>{renderGallery(category==='all'?products:products.filter(item=>item.categories.includes(category)));gallery.style.opacity='1'},180)});categoryBar.appendChild(button)});
-  document.getElementById('modalClose').addEventListener('click',()=>modal.classList.remove('active'));modal.addEventListener('click',event=>{if(event.target===modal)modal.classList.remove('active')});
-  renderGallery(products);
-})();
-</script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101817">
+<title>Frigates Shoe Store Kenya | Shoes for Every Step</title>
+<meta name="description" content="Explore affordable shoes for men and women at Frigates Stores in Kenya. Browse sneakers, boots and heels, then order through WhatsApp.">
+<meta name="author" content="FRIGATES"><link rel="canonical" href="https://alpha791.github.io/shoe-/">
+<meta property="og:title" content="Frigates Shoe Store Kenya"><meta property="og:description" content="Find your next pair. Browse the Frigates shoe collection and order through WhatsApp."><meta property="og:type" content="website"><meta property="og:url" content="https://alpha791.github.io/shoe-/"><meta property="og:image" content="https://alpha791.github.io/shoe-/images/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Frigates Stores","url":"https://alpha791.github.io/shoe-/","telephone":"+254717616895","currenciesAccepted":"KES","areaServed":"Kenya"}</script><script src="js/store.js" defer></script></head>
+<body><a class="skip-link" href="#product-gallery">Skip to products</a>
+<header class="site-header"><a class="brand" href="./"><img src="images/frigates.png" alt="" width="58" height="58"><span><strong>FRIGATES STORES</strong><small>Your one-stop shoe gallery</small></span></a><a class="header-contact" href="https://wa.me/254717616895" target="_blank" rel="noopener noreferrer">Contact store</a></header>
+<main class="page-shell"><section class="hero"><p class="eyebrow">STYLE · COMFORT · VALUE</p><h1>Find the right pair for every step.</h1><p>Explore our collection of shoes for everyday wear, work and special occasions.</p></section>
+<section class="catalogue" aria-label="Shoe catalogue"><div class="catalogue-heading"><div><p class="eyebrow">THE COLLECTION</p><h2>Shop shoes</h2></div><button class="cart-toggle" id="cart-toggle" type="button" aria-controls="cart-panel">Cart <span id="cart-count" aria-live="polite">0</span></button></div>
+<div class="toolbar"><label class="search-label" for="product-search">Search products</label><input id="product-search" type="search" placeholder="Search shoes…" autocomplete="off"><label class="sr-only" for="sort-products">Sort products</label><select id="sort-products"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name: A to Z</option></select></div>
+<nav id="category-bar" class="category-bar" aria-label="Filter products by category"></nav><p id="results-count" class="results-count" aria-live="polite"></p><div id="product-gallery" class="product-grid" aria-live="polite"></div><p id="empty-state" class="empty-state" hidden>No products match your search. Try another term or category.</p></section>
+<aside id="cart-panel" class="cart-panel" hidden aria-labelledby="cart-title"><div class="cart-heading"><h2 id="cart-title">Your order</h2><button id="cart-close" class="icon-button" type="button" aria-label="Close cart">×</button></div><div id="cart-items"></div><div class="cart-total"><span>Subtotal</span><strong id="cart-subtotal">KES 0</strong></div><p class="cart-note">Delivery fees and final availability are confirmed by the store.</p><button id="checkout-button" class="primary-button" type="button">Continue on WhatsApp</button><button id="clear-cart" class="text-button" type="button">Clear cart</button></aside></main>
+<dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-product-name"><form method="dialog"><button class="dialog-close" aria-label="Close product details">×</button></form><img id="dialog-image" class="dialog-image" alt=""><div class="dialog-copy"><p class="eyebrow">PRODUCT DETAILS</p><h2 id="dialog-product-name"></h2><p id="dialog-product-price" class="dialog-price"></p><p id="dialog-product-description"></p><p id="dialog-product-categories" class="muted"></p><label for="dialog-quantity">Quantity</label><input id="dialog-quantity" type="number" min="1" max="20" value="1"><button id="dialog-add" class="primary-button" type="button">Add to cart</button></div></dialog>
+<footer class="site-footer"><p><strong>FRIGATES STORES</strong> — Perfect shoes, every step of the way.</p><p><a href="https://wa.me/254717616895" target="_blank" rel="noopener noreferrer">WhatsApp +254 717 616 895</a></p><small>© 2026 FRIGATES. All rights reserved, subject to the project licence and third-party rights.</small></footer>
+<a class="floating-whatsapp" href="https://wa.me/254717616895?text=Hello%20Frigates%20Stores" target="_blank" rel="noopener noreferrer" aria-label="Chat with Frigates Stores on WhatsApp">WA</a></body></html>
