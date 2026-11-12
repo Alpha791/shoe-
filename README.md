@@ -1,47 +1,56 @@
-# Frigates Shoe Store 👟
+# Frigates Shoe Store
 
-Find the **perfect shoes** for your everyday life — stylish, comfortable, and made for all occasions.  
+A mobile-friendly shoe catalogue for FRIGATES STORES. Customers can browse products, filter and search the collection, add items to a cart, and send an itemised order summary through WhatsApp.
 
----
+**Live site:** https://alpha791.github.io/shoe-/
 
-## 🌍 Why Choose Us
-- ✅ Wide collection of shoes for men & women  
-- ✅ Affordable prices with premium quality  
-- ✅ Mobile-friendly online store  
-- ✅ Easy ordering via WhatsApp  
+## Features
+- Responsive product catalogue and category filters.
+- Product search and price/name sorting.
+- Product details and image previews.
+- Shopping cart, quantity controls and subtotal.
+- WhatsApp order handoff with an itemised order summary.
+- Accessible controls, lazy-loaded images and reduced-motion support.
+- GitHub Pages deployment workflow.
 
----
+## Technology
+HTML5, CSS3 and vanilla JavaScript. Product data lives in `products.json`. No build step or package manager is required.
 
-## 📞 Contact
-- Phone: [+254717616895](tel:+254717616895)  
-- WhatsApp: [Message Us](https://wa.me/254717616895)  
+## Project structure
+```text
+.github/workflows/deploy.yml
+css/style.css
+images/
+js/store.js
+products.json
+index.html
+LICENSE
+README.md
+SECURITY.md
+```
 
----
+## Run locally
+The site loads `products.json` using Fetch, so use a local HTTP server rather than opening `index.html` with a `file://` URL:
+```bash
+python -m http.server 8000
+```
+Open http://localhost:8000.
 
-🛒 **Frigates Stores — Perfect shoes, every step of the way.**
+## Update products
+Edit `products.json`. Each product has a unique `id`, `name`, numeric `price` in KES, `currency`, `categories`, `image` path, and `description`. Confirm stock, sizes, pricing and image rights before publishing changes.
 
-## Copyright & Intellectual Property
+## Orders and payments
+The cart opens WhatsApp with an itemised message to +254 717 616 895. This static site does **not** process payments, reserve inventory, calculate delivery fees or create server-side order records. The store must confirm availability, sizes, delivery charges and the final amount with the customer. Online payments require a secure backend and payment-provider integration.
 
-Copyright (c) 2026 FRIGATES. All Rights Reserved.
+Never commit credentials, payment secrets, access tokens or private customer information to this repository.
 
-This project is an original development of FRIGATES
-unless otherwise stated.
+## Deployment
+The GitHub Actions workflow validates required files and deploys the site when changes are pushed to `main`. In GitHub, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Pull requests run validation without deploying.
 
-The repository is publicly accessible for technical
-inspection and evaluation.
+## Support
+WhatsApp: [+254 717 616 895](https://wa.me/254717616895)
 
-Public visibility does not constitute permission to
-reuse, reproduce, modify, redistribute or commercially
-exploit the original source code or project materials.
+## Copyright and licence
+Copyright (c) 2026 FRIGATES. All rights reserved, subject to the repository's proprietary licence and third-party rights. See [LICENSE](LICENSE).
 
-For commercial licensing, collaboration, integration
-or permission to use this project, contact FRIGATES.
-
-See the [LICENSE](LICENSE) file for licensing terms.
-
----
-
-**Developed by FRIGATES**
-
-Engineering solutions. Building technology.
-Solving complex problems.
+**Developed by FRIGATES.** Engineering solutions. Building technology. Solving complex problems.
