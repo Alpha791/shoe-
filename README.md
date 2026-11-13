@@ -40,7 +40,7 @@ Open http://localhost:8000.
 Edit `products.json`. Each product has a unique `id`, `name`, numeric `price` in KES, `currency`, `categories`, `image` path, and `description`. Confirm stock, sizes, pricing and image rights before publishing changes.
 
 ## Orders and payments
-The cart opens WhatsApp with an itemised message to +254 717 616 895. This static site does **not** process payments, reserve inventory, calculate delivery fees or create server-side order records. The store must confirm availability, sizes, delivery charges and the final amount with the customer. Online payments require a secure backend and payment-provider integration.
+The cart offers two WhatsApp checkout destinations with an itemised order message: primary +254 717 616 895 and alternative +254 791 185 252. This static site does **not** process payments, reserve inventory, calculate delivery fees or create server-side order records. The store must confirm availability, sizes, delivery charges and the final amount with the customer. Online payments require a secure backend and payment-provider integration.
 
 Never commit credentials, payment secrets, access tokens or private customer information to this repository.
 
@@ -52,7 +52,7 @@ The GitHub Actions workflow validates required files and deploys the site when c
 Customers can open the [Customer Rights & Privacy Notice](https://alpha791.github.io/shoe-/legal.html) from the storefront footer. It explains browser cart storage, WhatsApp handoff, hosting, customer privacy rights, store ordering terms, and copyright information. This notice is general customer information, not legal advice.
 
 ## Support
-WhatsApp: [+254 717 616 895](https://wa.me/254717616895)
+WhatsApp primary: [+254 717 616 895](https://wa.me/254717616895) · WhatsApp alternative: [+254 791 185 252](https://wa.me/254791185252)
 
 ## Copyright and licence
 Copyright (c) 2026 FRIGATES. All rights reserved, subject to the repository's proprietary licence and third-party rights. See [LICENSE](LICENSE).
